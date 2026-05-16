@@ -27,13 +27,17 @@ function Slider({
       min={min}
       max={max}
       thumbAlignment="edge"
-      className={cn("data-horizontal:w-full data-vertical:h-full", className)}
+      className={cn(
+        "data-[orientation=horizontal]:w-full",
+        "data-[orientation=vertical]:h-full data-[orientation=vertical]:min-h-40",
+        className
+      )}
       {...props}
     >
       <SliderPrimitive.Control
         className={cn(
           "relative flex w-full touch-none select-none items-center",
-          "data-vertical:h-full data-vertical:w-auto data-vertical:flex-col",
+          "data-[orientation=vertical]:h-full data-[orientation=vertical]:w-auto data-[orientation=vertical]:flex-col",
           "data-disabled:opacity-50 data-disabled:cursor-not-allowed"
         )}
       >
@@ -42,16 +46,16 @@ function Slider({
           className={cn(
             "relative grow select-none overflow-hidden rounded-full",
             "bg-(--hola-fg)/[0.08] dark:bg-(--hola-fg)/[0.1]",
-            "data-horizontal:h-1.5 data-horizontal:w-full",
-            "data-vertical:h-full data-vertical:w-1.5"
+            "data-[orientation=horizontal]:h-1.5 data-[orientation=horizontal]:w-full",
+            "data-[orientation=vertical]:h-full data-[orientation=vertical]:w-1.5"
           )}
         >
           <SliderPrimitive.Indicator
             data-slot="slider-range"
             className={cn(
               "select-none bg-(--hola-accent)",
-              "data-horizontal:h-full",
-              "data-vertical:w-full"
+              "data-[orientation=horizontal]:h-full",
+              "data-[orientation=vertical]:w-full"
             )}
           />
         </SliderPrimitive.Track>
