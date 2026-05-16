@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "textarea",
+  "title": "Textarea",
+  "description": "Multi-line text input. Auto-grow with field-sizing-content, asymmetric light/dark, resize-y.",
+  "registryDependencies": [
+    "theme",
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/hola/ui/textarea.tsx",
+      "content": "import * as React from \"react\";\n\nimport { cn } from \"@/registry/hola/lib/utils\";\n\nfunction Textarea({ className, ...props }: React.ComponentProps<\"textarea\">) {\n  return (\n    <textarea\n      data-slot=\"textarea\"\n      className={cn(\n        // Layout — field-sizing-content lets the textarea grow with input.\n        \"block w-full min-w-0 field-sizing-content min-h-16\",\n        \"rounded-[6px] border bg-clip-padding\",\n        \"px-2.5 py-2\",\n        // Typography — Catalyst responsive scale.\n        \"text-base text-fg sm:text-sm/5\",\n        \"placeholder:text-muted\",\n        // Border — translucent overlay, strengthens on hover.\n        \"border-(--hola-fg)/10\",\n        \"hover:border-(--hola-fg)/20\",\n        \"dark:border-(--hola-fg)/15\",\n        \"dark:hover:border-(--hola-fg)/25\",\n        // Background — asymmetric light/dark.\n        \"bg-bg shadow-xs\",\n        \"dark:bg-(--hola-fg)/[0.04] dark:shadow-none\",\n        // Focus — Catalyst-style solid 2px ring, border stays subtle.\n        \"outline-none transition-[box-shadow] duration-100\",\n        \"focus-visible:ring-2 focus-visible:ring-(--hola-accent)\",\n        // Invalid (form validation via aria-invalid).\n        \"aria-invalid:ring-2 aria-invalid:ring-(--hola-danger)\",\n        // Selection.\n        \"selection:bg-(--hola-accent)/20 selection:text-fg\",\n        // Disabled.\n        \"disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50\",\n        // Resize control.\n        \"resize-y\",\n        className\n      )}\n      {...props}\n    />\n  );\n}\n\nexport { Textarea };\n",
+      "type": "registry:ui",
+      "target": "components/ui/textarea.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

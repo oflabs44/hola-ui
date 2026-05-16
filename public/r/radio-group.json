@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "radio-group",
+  "title": "Radio Group",
+  "description": "Single-selection group on @base-ui/react/radio-group. Border becomes accent on selection; inner dot fills with accent.",
+  "dependencies": [
+    "@base-ui/react"
+  ],
+  "registryDependencies": [
+    "theme",
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/hola/ui/radio-group.tsx",
+      "content": "\"use client\";\n\nimport { Radio as RadioPrimitive } from \"@base-ui/react/radio\";\nimport { RadioGroup as RadioGroupPrimitive } from \"@base-ui/react/radio-group\";\n\nimport { cn } from \"@/registry/hola/lib/utils\";\n\nfunction RadioGroup({ className, ...props }: RadioGroupPrimitive.Props) {\n  return (\n    <RadioGroupPrimitive\n      data-slot=\"radio-group\"\n      className={cn(\"grid w-full gap-2\", className)}\n      {...props}\n    />\n  );\n}\n\nfunction RadioGroupItem({ className, ...props }: RadioPrimitive.Root.Props) {\n  return (\n    <RadioPrimitive.Root\n      data-slot=\"radio-group-item\"\n      className={cn(\n        \"group/radio peer relative inline-flex aspect-square size-4 shrink-0 items-center justify-center\",\n        \"rounded-full border bg-clip-padding\",\n        // Default state.\n        \"border-(--hola-fg)/25 bg-bg shadow-xs\",\n        \"dark:border-(--hola-fg)/30 dark:bg-(--hola-fg)/[0.04] dark:shadow-none\",\n        \"hover:border-(--hola-fg)/40 dark:hover:border-(--hola-fg)/50\",\n        // Checked — border becomes accent (dot rendered inside).\n        \"data-[checked]:border-(--hola-accent)\",\n        // Focus.\n        \"outline-none transition-[box-shadow,border-color] duration-100\",\n        \"focus-visible:ring-2 focus-visible:ring-(--hola-accent)\",\n        // Invalid.\n        \"aria-invalid:border-(--hola-danger) aria-invalid:ring-2 aria-invalid:ring-(--hola-danger)\",\n        // Hit area for touch.\n        \"after:absolute after:-inset-x-3 after:-inset-y-2\",\n        // Disabled.\n        \"disabled:cursor-not-allowed disabled:opacity-50\",\n        className\n      )}\n      {...props}\n    >\n      <RadioPrimitive.Indicator\n        data-slot=\"radio-group-indicator\"\n        className=\"grid place-content-center\"\n      >\n        <span className=\"block size-2 rounded-full bg-(--hola-accent)\" />\n      </RadioPrimitive.Indicator>\n    </RadioPrimitive.Root>\n  );\n}\n\nexport { RadioGroup, RadioGroupItem };\n",
+      "type": "registry:ui",
+      "target": "components/ui/radio-group.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

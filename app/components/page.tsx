@@ -7,6 +7,11 @@ const components = [
   { href: "/components/input-group", name: "Input Group", description: "Wrapper for inputs with icons, addons, buttons. Inline + block alignment." },
   { href: "/components/label", name: "Label", description: "Accessible form label with disabled-state propagation." },
   { href: "/components/field", name: "Field", description: "Compose Label + Input + Description + Error. Vertical / horizontal / responsive orientation." },
+  { href: "/components/textarea", name: "Textarea", description: "Multi-line text input. Auto-grow with field-sizing-content." },
+  { href: "/components/checkbox", name: "Checkbox", description: "Checkbox with checked / indeterminate states." },
+  { href: "/components/switch", name: "Switch", description: "Toggle switch. Sizes: sm, default." },
+  { href: "/components/radio-group", name: "Radio Group", description: "Single-selection group with accent border + inner dot." },
+  { href: "/components/select", name: "Select", description: "Dropdown select with portal-rendered content, groups, separators." },
 ];
 
 export default function ComponentsIndex() {

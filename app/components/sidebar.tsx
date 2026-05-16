@@ -18,6 +18,11 @@ const sections = [
       { href: "/components/input-group", label: "Input Group" },
       { href: "/components/label", label: "Label" },
       { href: "/components/field", label: "Field" },
+      { href: "/components/textarea", label: "Textarea" },
+      { href: "/components/checkbox", label: "Checkbox" },
+      { href: "/components/switch", label: "Switch" },
+      { href: "/components/radio-group", label: "Radio Group" },
+      { href: "/components/select", label: "Select" },
     ],
   },
 ];

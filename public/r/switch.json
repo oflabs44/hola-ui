@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "switch",
+  "title": "Switch",
+  "description": "Toggle switch on @base-ui/react/switch. Sizes: sm, default. Accent fill on, neutral surface off.",
+  "dependencies": [
+    "@base-ui/react"
+  ],
+  "registryDependencies": [
+    "theme",
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/hola/ui/switch.tsx",
+      "content": "\"use client\";\n\nimport { Switch as SwitchPrimitive } from \"@base-ui/react/switch\";\n\nimport { cn } from \"@/registry/hola/lib/utils\";\n\nfunction Switch({\n  className,\n  size = \"default\",\n  ...props\n}: SwitchPrimitive.Root.Props & { size?: \"sm\" | \"default\" }) {\n  return (\n    <SwitchPrimitive.Root\n      data-slot=\"switch\"\n      data-size={size}\n      className={cn(\n        \"peer group/switch relative inline-flex shrink-0 items-center bg-clip-padding\",\n        \"rounded-full border bg-bg\",\n        // Sizing per data-size.\n        \"data-[size=default]:h-[20px] data-[size=default]:w-[34px]\",\n        \"data-[size=sm]:h-[16px] data-[size=sm]:w-[28px]\",\n        // Off state — neutral surface, asymmetric light/dark.\n        \"border-(--hola-fg)/15 bg-(--hola-fg)/[0.06] shadow-xs\",\n        \"dark:border-(--hola-fg)/20 dark:bg-(--hola-fg)/[0.08] dark:shadow-none\",\n        \"hover:bg-(--hola-fg)/[0.1] dark:hover:bg-(--hola-fg)/[0.12]\",\n        // On state — fill with accent.\n        \"data-[checked]:border-(--hola-accent) data-[checked]:bg-(--hola-accent)\",\n        \"data-[checked]:hover:bg-(--hola-accent)/90\",\n        // Focus + transitions.\n        \"outline-none transition-[background-color,border-color,box-shadow] duration-150\",\n        \"focus-visible:ring-2 focus-visible:ring-(--hola-accent) focus-visible:ring-offset-2 focus-visible:ring-offset-bg\",\n        // Hit area for touch.\n        \"after:absolute after:-inset-x-1 after:-inset-y-2\",\n        // Disabled.\n        \"data-disabled:cursor-not-allowed data-disabled:opacity-50\",\n        className\n      )}\n      {...props}\n    >\n      <SwitchPrimitive.Thumb\n        data-slot=\"switch-thumb\"\n        className={cn(\n          \"pointer-events-none block rounded-full bg-bg shadow-sm ring-0\",\n          \"transition-transform duration-150\",\n          // Sizing per parent's data-size.\n          \"group-data-[size=default]/switch:size-[14px] group-data-[size=default]/switch:translate-x-[2px]\",\n          \"group-data-[size=sm]/switch:size-[12px] group-data-[size=sm]/switch:translate-x-[1px]\",\n          // On state translation.\n          \"group-data-[size=default]/switch:group-data-[checked]/switch:translate-x-[17px]\",\n          \"group-data-[size=sm]/switch:group-data-[checked]/switch:translate-x-[13px]\",\n          // Thumb colour on checked — white on accent reads cleaner than tinted.\n          \"group-data-[checked]/switch:bg-white\"\n        )}\n      />\n    </SwitchPrimitive.Root>\n  );\n}\n\nexport { Switch };\n",
+      "type": "registry:ui",
+      "target": "components/ui/switch.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}
