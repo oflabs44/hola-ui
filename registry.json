@@ -115,6 +115,22 @@
           "target": "components/ui/input.tsx"
         }
       ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "input-group",
+      "type": "registry:ui",
+      "title": "Input Group",
+      "description": "Composable wrapper for inputs with icons, text addons, buttons. Group root carries the border + focus ring; children are transparent.",
+      "dependencies": ["@base-ui/react", "class-variance-authority"],
+      "registryDependencies": ["theme", "utils", "input", "button"],
+      "files": [
+        {
+          "path": "registry/hola/ui/input-group.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/input-group.tsx"
+        }
+      ]
     }
   ]
 }

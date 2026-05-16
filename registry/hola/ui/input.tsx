@@ -24,12 +24,12 @@ function Input({ className, type, ...props }: React.ComponentProps<"input">) {
         // Background — Catalyst asymmetric: raised in light, etched in dark
         "bg-bg shadow-xs",
         "dark:bg-(--hola-fg)/[0.04] dark:shadow-none",
-        // Focus
-        "outline-none transition-[border-color,box-shadow,background-color] duration-100",
-        "focus-visible:border-(--hola-accent)/50",
-        "focus-visible:ring-2 focus-visible:ring-(--hola-accent)/25",
+        // Focus — Catalyst-style: border stays subtle, the solid 2px ring
+        // carries the weight. Border thickening on focus would read as 3px.
+        "outline-none transition-[box-shadow] duration-100",
+        "focus-visible:ring-2 focus-visible:ring-(--hola-accent)",
         // Invalid (form validation via aria-invalid)
-        "aria-invalid:border-(--hola-danger)/60 aria-invalid:ring-2 aria-invalid:ring-(--hola-danger)/20",
+        "aria-invalid:ring-2 aria-invalid:ring-(--hola-danger)",
         // File input — inline with the field
         "file:mr-2 file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-fg",
         // Selection

@@ -15,6 +15,7 @@ const sections = [
       { href: "/components/button", label: "Button" },
       { href: "/components/badge", label: "Badge" },
       { href: "/components/input", label: "Input" },
+      { href: "/components/input-group", label: "Input Group" },
     ],
   },
 ];
