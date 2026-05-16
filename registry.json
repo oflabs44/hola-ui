@@ -83,6 +83,22 @@
           "target": "components/ui/button.tsx"
         }
       ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "badge",
+      "type": "registry:ui",
+      "title": "Badge",
+      "description": "Status pill / label, tinted-bg variants. useRender hook for polymorphism (no Base UI primitive needed — badges aren't interactive).",
+      "dependencies": ["@base-ui/react", "class-variance-authority"],
+      "registryDependencies": ["theme", "utils"],
+      "files": [
+        {
+          "path": "registry/hola/ui/badge.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/badge.tsx"
+        }
+      ]
     }
   ]
 }
