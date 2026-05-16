@@ -8,7 +8,7 @@
       "name": "theme",
       "type": "registry:theme",
       "title": "Hola theme",
-      "description": "Hola UI design tokens — neutrals shifted a hair toward brand hue, translucent overlay borders, asymmetric light/dark.",
+      "description": "Hola UI design tokens — neutrals shifted toward brand hue, translucent overlay borders, asymmetric light/dark.",
       "cssVars": {
         "theme": {
           "color-bg": "var(--hola-bg)",
@@ -55,12 +55,27 @@
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "utils",
+      "type": "registry:lib",
+      "title": "cn helper",
+      "description": "Standard shadcn cn() — twMerge(clsx(inputs)).",
+      "dependencies": ["clsx", "tailwind-merge"],
+      "files": [
+        {
+          "path": "registry/hola/lib/utils.ts",
+          "type": "registry:lib",
+          "target": "lib/utils.ts"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "name": "button",
       "type": "registry:ui",
       "title": "Button",
-      "description": "Premium button with layered pseudo-element architecture, CSS-var variant handoff, touch target, forced-colors support.",
-      "dependencies": ["clsx"],
-      "registryDependencies": ["theme"],
+      "description": "Button on @base-ui/react, shadcn API (CVA + variant/size + data-slot), Catalyst-flavoured visual treatment.",
+      "dependencies": ["@base-ui/react", "class-variance-authority"],
+      "registryDependencies": ["theme", "utils"],
       "files": [
         {
           "path": "registry/hola/ui/button.tsx",

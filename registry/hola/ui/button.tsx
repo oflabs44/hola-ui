@@ -1,134 +1,101 @@
-import clsx from "clsx";
-import { forwardRef } from "react";
-import type {
-  AnchorHTMLAttributes,
-  ButtonHTMLAttributes,
-  ForwardedRef,
-  ReactNode,
-} from "react";
+import { Button as ButtonPrimitive } from "@base-ui/react/button";
+import { cva, type VariantProps } from "class-variance-authority";
 
-const styles = {
-  base: [
-    "relative isolate inline-flex items-center justify-center gap-x-2",
-    "rounded-md border text-sm/6 font-medium",
-    "px-[calc(--spacing(3)-1px)] py-[calc(--spacing(1.5)-1px)]",
-    "focus:outline-hidden focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--hola-accent)",
-    "disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none",
-    "transition-[background-color,box-shadow,border-color] duration-100",
-    "*:data-[slot=icon]:size-4 *:data-[slot=icon]:shrink-0 *:data-[slot=icon]:self-center *:data-[slot=icon]:text-(--btn-icon)",
-    "forced-colors:[--btn-icon:ButtonText] forced-colors:hover:[--btn-icon:ButtonText]",
-  ],
+import { cn } from "@/registry/hola/lib/utils";
 
-  solid: [
-    "border-transparent bg-(--btn-border)",
-    "dark:bg-(--btn-bg) dark:border-(--hola-fg)/5",
-    "before:absolute before:inset-0 before:-z-10 before:rounded-[calc(var(--radius-md)-1px)] before:bg-(--btn-bg) before:shadow-sm",
-    "dark:before:hidden",
-    "after:absolute after:inset-0 after:-z-10 after:rounded-[calc(var(--radius-md)-1px)]",
-    "after:shadow-[inset_0_1px_oklch(1_0_0_/_0.15)]",
-    "hover:after:bg-(--btn-hover-overlay) active:after:bg-(--btn-hover-overlay)",
-    "dark:after:-inset-px dark:after:rounded-md",
-    "disabled:before:shadow-none disabled:after:shadow-none disabled:after:bg-transparent",
-  ],
-
-  outline: [
-    "border-(--hola-fg)/10 text-fg bg-transparent",
-    "hover:bg-(--hola-fg)/[0.025] active:bg-(--hola-fg)/[0.05]",
-    "dark:border-(--hola-fg)/15 dark:hover:bg-(--hola-fg)/5 dark:active:bg-(--hola-fg)/10",
-    "[--btn-icon:var(--hola-muted)] hover:[--btn-icon:var(--hola-fg)]",
-  ],
-
-  plain: [
-    "border-transparent text-fg bg-transparent",
-    "hover:bg-(--hola-fg)/5 active:bg-(--hola-fg)/10",
-    "[--btn-icon:var(--hola-muted)] hover:[--btn-icon:var(--hola-fg)]",
-  ],
-
-  colors: {
-    primary: [
-      "text-(--hola-brand-fg)",
-      "[--btn-bg:var(--hola-brand)]",
-      "[--btn-border:var(--hola-brand)]",
-      "[--btn-hover-overlay:oklch(1_0_0_/_0.08)]",
-      "dark:[--btn-hover-overlay:oklch(0_0_0_/_0.08)]",
-      "[--btn-icon:var(--hola-brand-fg)]",
-    ],
-    accent: [
-      "text-(--hola-accent-fg)",
-      "[--btn-bg:var(--hola-accent)]",
-      "[--btn-border:var(--hola-accent)]",
-      "[--btn-hover-overlay:oklch(1_0_0_/_0.12)]",
-      "[--btn-icon:var(--hola-accent-fg)]",
-    ],
-    danger: [
-      "text-(--hola-danger-fg)",
-      "[--btn-bg:var(--hola-danger)]",
-      "[--btn-border:var(--hola-danger)]",
-      "[--btn-hover-overlay:oklch(1_0_0_/_0.12)]",
-      "[--btn-icon:var(--hola-danger-fg)]",
-    ],
-  },
-};
-
-type Variant =
-  | { color?: keyof typeof styles.colors; outline?: never; plain?: never }
-  | { color?: never; outline: true; plain?: never }
-  | { color?: never; outline?: never; plain: true };
-
-type Common = { className?: string; children: ReactNode };
-
-type ButtonAsButton = Variant & Common &
-  Omit<ButtonHTMLAttributes<HTMLButtonElement>, "color" | keyof Variant | keyof Common> & {
-    href?: never;
-  };
-
-type ButtonAsLink = Variant & Common &
-  Omit<AnchorHTMLAttributes<HTMLAnchorElement>, "color" | keyof Variant | keyof Common> & {
-    href: string;
-  };
-
-export type ButtonProps = ButtonAsButton | ButtonAsLink;
-
-export const Button = forwardRef(function Button(
-  { color, outline, plain, className, children, ...props }: ButtonProps,
-  ref: ForwardedRef<HTMLElement>
-) {
-  const variantClasses = outline
-    ? styles.outline
-    : plain
-      ? styles.plain
-      : [...styles.solid, ...styles.colors[color ?? "primary"]];
-
-  const classes = clsx(className, styles.base, variantClasses);
-
-  if ("href" in props && typeof props.href === "string") {
-    return (
-      <a {...props} className={classes} ref={ref as ForwardedRef<HTMLAnchorElement>}>
-        <TouchTarget>{children}</TouchTarget>
-      </a>
-    );
+const buttonVariants = cva(
+  cn(
+    "relative isolate inline-flex shrink-0 items-center justify-center whitespace-nowrap",
+    "font-medium select-none outline-none bg-clip-padding",
+    "transition-[background-color,box-shadow,border-color,color,transform] duration-100",
+    "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--hola-accent)",
+    "disabled:pointer-events-none disabled:opacity-50",
+    "active:not-aria-[haspopup]:translate-y-px",
+    "[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+    "forced-colors:[--btn-icon:ButtonText]"
+  ),
+  {
+    variants: {
+      variant: {
+        // Solid near-black (light) / near-white (dark). Layered pseudo elements
+        // give it the "tactile" Catalyst feel: optical border + inset surface +
+        // 1px white highlight + hover overlay layer.
+        default: cn(
+          "border border-transparent text-(--hola-brand-fg)",
+          "bg-(--hola-brand)",
+          "before:absolute before:inset-0 before:-z-10 before:rounded-[inherit]",
+          "before:bg-(--hola-brand) before:shadow-sm",
+          "after:absolute after:inset-0 after:-z-10 after:rounded-[inherit]",
+          "after:shadow-[inset_0_1px_oklch(1_0_0_/_0.15)]",
+          "hover:after:bg-(--hola-fg)/[0.08] active:after:bg-(--hola-fg)/[0.12]",
+          "dark:before:hidden dark:border-(--hola-fg)/5",
+          "dark:after:-inset-px dark:after:rounded-[inherit]",
+          "dark:hover:after:bg-(--hola-fg)/[0.08] dark:active:after:bg-(--hola-fg)/[0.12]"
+        ),
+        // Subtle filled background, no shadow.
+        secondary: cn(
+          "border border-transparent text-fg",
+          "bg-(--hola-fg)/[0.06] hover:bg-(--hola-fg)/[0.1] active:bg-(--hola-fg)/[0.14]",
+          "dark:bg-(--hola-fg)/[0.08] dark:hover:bg-(--hola-fg)/[0.12] dark:active:bg-(--hola-fg)/[0.16]"
+        ),
+        // Transparent + translucent overlay border.
+        outline: cn(
+          "border border-(--hola-fg)/10 bg-transparent text-fg",
+          "hover:bg-(--hola-fg)/[0.025] active:bg-(--hola-fg)/[0.05]",
+          "dark:border-(--hola-fg)/15 dark:hover:bg-(--hola-fg)/5 dark:active:bg-(--hola-fg)/10"
+        ),
+        // Transparent, hover-only background.
+        ghost: cn(
+          "border border-transparent bg-transparent text-fg",
+          "hover:bg-(--hola-fg)/5 active:bg-(--hola-fg)/10"
+        ),
+        // Solid red, same layered treatment as default.
+        destructive: cn(
+          "border border-transparent text-(--hola-danger-fg)",
+          "bg-(--hola-danger)",
+          "before:absolute before:inset-0 before:-z-10 before:rounded-[inherit]",
+          "before:bg-(--hola-danger) before:shadow-sm",
+          "after:absolute after:inset-0 after:-z-10 after:rounded-[inherit]",
+          "after:shadow-[inset_0_1px_oklch(1_0_0_/_0.18)]",
+          "hover:after:bg-white/10 active:after:bg-white/15",
+          "dark:before:hidden",
+          "dark:after:-inset-px dark:after:rounded-[inherit]"
+        ),
+        // Text-only with underline on hover.
+        link: cn(
+          "border border-transparent bg-transparent",
+          "text-(--hola-accent) underline-offset-4 hover:underline"
+        ),
+      },
+      size: {
+        default: "h-8 gap-1.5 rounded-[6px] px-2.5 text-sm/5",
+        sm: "h-7 gap-1 rounded-[5px] px-2 text-xs/4",
+        lg: "h-10 gap-2 rounded-[7px] px-3.5 text-sm/5",
+        icon: "size-8 rounded-[6px]",
+        "icon-sm": "size-7 rounded-[5px]",
+        "icon-lg": "size-10 rounded-[7px]",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "default",
+    },
   }
+);
 
+function Button({
+  className,
+  variant = "default",
+  size = "default",
+  ...props
+}: ButtonPrimitive.Props & VariantProps<typeof buttonVariants>) {
   return (
-    <button
-      type="button"
-      {...(props as ButtonHTMLAttributes<HTMLButtonElement>)}
-      className={classes}
-      ref={ref as ForwardedRef<HTMLButtonElement>}
-    >
-      <TouchTarget>{children}</TouchTarget>
-    </button>
-  );
-});
-
-function TouchTarget({ children }: { children: ReactNode }) {
-  return (
-    <>
-      <span
-        aria-hidden="true"
-        className="absolute top-1/2 left-1/2 size-[max(100%,2.75rem)] -translate-x-1/2 -translate-y-1/2 pointer-fine:hidden"
-      />
-      {children}
-    </>
+    <ButtonPrimitive
+      data-slot="button"
+      className={cn(buttonVariants({ variant, size, className }))}
+      {...props}
+    />
   );
 }
+
+export { Button, buttonVariants };

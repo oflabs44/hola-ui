@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "theme",
   "title": "Hola theme",
-  "description": "Hola UI design tokens — neutrals shifted a hair toward brand hue, translucent overlay borders, asymmetric light/dark.",
+  "description": "Hola UI design tokens — neutrals shifted toward brand hue, translucent overlay borders, asymmetric light/dark.",
   "cssVars": {
     "theme": {
       "color-bg": "var(--hola-bg)",
