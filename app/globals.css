@@ -1,0 +1,52 @@
+@import "tailwindcss";
+
+/* Hola UI design tokens — keep in sync with registry.json `cssVars`. */
+:root {
+  --hola-bg: oklch(0.99 0 0);
+  --hola-fg: oklch(0.18 0 0);
+  --hola-muted: oklch(0.55 0 0);
+  --hola-surface: oklch(0.97 0 0);
+  --hola-border: oklch(0.9 0 0);
+  --hola-brand: oklch(0.72 0.16 50);
+  --hola-brand-fg: oklch(0.18 0 0);
+  --hola-accent: oklch(0.62 0.14 250);
+  --hola-radius: 0.625rem;
+
+  isolation: isolate;
+}
+
+.dark {
+  --hola-bg: oklch(0.14 0 0);
+  --hola-fg: oklch(0.96 0 0);
+  --hola-muted: oklch(0.65 0 0);
+  --hola-surface: oklch(0.2 0 0);
+  --hola-border: oklch(0.3 0 0);
+  --hola-brand: oklch(0.74 0.16 50);
+  --hola-brand-fg: oklch(0.14 0 0);
+  --hola-accent: oklch(0.7 0.14 250);
+}
+
+@theme inline {
+  --color-bg: var(--hola-bg);
+  --color-fg: var(--hola-fg);
+  --color-muted: var(--hola-muted);
+  --color-surface: var(--hola-surface);
+  --color-border: var(--hola-border);
+  --color-brand: var(--hola-brand);
+  --color-brand-fg: var(--hola-brand-fg);
+  --color-accent: var(--hola-accent);
+  --radius: var(--hola-radius);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not(.light) {
+    --hola-bg: oklch(0.14 0 0);
+    --hola-fg: oklch(0.96 0 0);
+    --hola-muted: oklch(0.65 0 0);
+    --hola-surface: oklch(0.2 0 0);
+    --hola-border: oklch(0.3 0 0);
+    --hola-brand: oklch(0.74 0.16 50);
+    --hola-brand-fg: oklch(0.14 0 0);
+    --hola-accent: oklch(0.7 0.14 250);
+  }
+}
