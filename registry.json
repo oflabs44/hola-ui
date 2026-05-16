@@ -308,21 +308,6 @@
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-      "name": "card",
-      "type": "registry:ui",
-      "title": "Card",
-      "description": "Bordered surface container. Card + CardHeader + CardTitle + CardDescription + CardAction + CardContent + CardFooter. Asymmetric light/dark surface, translucent borders.",
-      "registryDependencies": ["theme", "utils"],
-      "files": [
-        {
-          "path": "registry/hola/ui/card.tsx",
-          "type": "registry:ui",
-          "target": "components/ui/card.tsx"
-        }
-      ]
-    },
-    {
-      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "name": "avatar",
       "type": "registry:ui",
       "title": "Avatar",
@@ -334,36 +319,6 @@
           "path": "registry/hola/ui/avatar.tsx",
           "type": "registry:ui",
           "target": "components/ui/avatar.tsx"
-        }
-      ]
-    },
-    {
-      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-      "name": "skeleton",
-      "type": "registry:ui",
-      "title": "Skeleton",
-      "description": "Animated loading placeholder. Tint pulses to indicate loading state.",
-      "registryDependencies": ["theme", "utils"],
-      "files": [
-        {
-          "path": "registry/hola/ui/skeleton.tsx",
-          "type": "registry:ui",
-          "target": "components/ui/skeleton.tsx"
-        }
-      ]
-    },
-    {
-      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-      "name": "aspect-ratio",
-      "type": "registry:ui",
-      "title": "Aspect Ratio",
-      "description": "Container that maintains a fixed aspect ratio (16/9, 4/3 etc.). Wraps images / videos / embeds.",
-      "registryDependencies": ["theme", "utils"],
-      "files": [
-        {
-          "path": "registry/hola/ui/aspect-ratio.tsx",
-          "type": "registry:ui",
-          "target": "components/ui/aspect-ratio.tsx"
         }
       ]
     }

@@ -15,11 +15,11 @@ function Separator({
       data-slot="separator"
       orientation={orientation}
       className={cn(
-        "shrink-0",
-        // Catalyst's soft variant — half the opacity, for in-card / subtle dividers.
-        soft ? "bg-(--hola-fg)/[0.05]" : "bg-(--hola-fg)/[0.1]",
-        "data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full",
-        "data-[orientation=vertical]:w-px data-[orientation=vertical]:self-stretch",
+        "shrink-0 bg-transparent",
+        // Catalyst's translucent border. Soft = half opacity for in-card use.
+        soft ? "border-(--hola-fg)/[0.05]" : "border-(--hola-fg)/[0.1]",
+        "data-[orientation=horizontal]:w-full data-[orientation=horizontal]:border-t",
+        "data-[orientation=vertical]:self-stretch data-[orientation=vertical]:border-l",
         className
       )}
       {...props}

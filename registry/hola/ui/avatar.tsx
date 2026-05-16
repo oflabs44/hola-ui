@@ -6,9 +6,9 @@ import { Avatar as AvatarPrimitive } from "@base-ui/react/avatar";
 import { cn } from "@/registry/hola/lib/utils";
 
 // -----------------------------------------------------------------------------
-// Avatar — Base UI Avatar with Catalyst's signature inset-outline treatment
-// (subtle ring at the border edge that tints the surface beneath it).
-// Sizes: sm / default / lg. Shapes: circle (default) / square (20% radius).
+// Avatar — Base UI Avatar with Catalyst's signature inset-outline. The root
+// does NOT clip (so badges can sit at the corner edge); children inherit the
+// radius via `rounded-[inherit]` so the image stays inside the avatar shape.
 // -----------------------------------------------------------------------------
 
 function Avatar({
@@ -26,19 +26,18 @@ function Avatar({
       data-size={size}
       data-shape={shape}
       className={cn(
-        "group/avatar relative flex shrink-0 select-none overflow-hidden",
+        "group/avatar relative flex shrink-0 select-none align-middle",
         // Sizes.
         "data-[size=sm]:size-6 data-[size=sm]:text-xs",
         "data-[size=default]:size-9 data-[size=default]:text-sm",
         "data-[size=lg]:size-12 data-[size=lg]:text-base",
-        // Shape — circle (default) or 20% radius square (Catalyst's convention).
+        // Shape applied to root — children inherit via rounded-[inherit].
         "data-[shape=circle]:rounded-full",
         "data-[shape=square]:rounded-[20%]",
-        // Catalyst's inset outline — a 1px translucent ring at the edge that
-        // sits ON TOP of the image so it never disappears against a similarly
-        // coloured bg.
-        "after:absolute after:inset-0 after:rounded-[inherit] after:border after:border-(--hola-fg)/10",
-        "after:mix-blend-darken dark:after:border-(--hola-fg)/15 dark:after:mix-blend-lighten",
+        // Catalyst's outline — a translucent ring at the edge using outline
+        // (not after-pseudo) so it overlays whatever's inside without clipping.
+        "outline outline-1 -outline-offset-1 outline-(--hola-fg)/10",
+        "dark:outline-(--hola-fg)/15",
         className
       )}
       {...props}
@@ -50,7 +49,10 @@ function AvatarImage({ className, ...props }: AvatarPrimitive.Image.Props) {
   return (
     <AvatarPrimitive.Image
       data-slot="avatar-image"
-      className={cn("aspect-square size-full object-cover", className)}
+      className={cn(
+        "aspect-square size-full rounded-[inherit] object-cover",
+        className
+      )}
       {...props}
     />
   );
@@ -64,7 +66,7 @@ function AvatarFallback({
     <AvatarPrimitive.Fallback
       data-slot="avatar-fallback"
       className={cn(
-        "flex size-full items-center justify-center font-medium uppercase",
+        "flex size-full items-center justify-center rounded-[inherit] font-medium uppercase",
         "bg-(--hola-fg)/[0.08] text-fg",
         "dark:bg-(--hola-fg)/[0.1]",
         className
@@ -76,7 +78,7 @@ function AvatarFallback({
 
 // -----------------------------------------------------------------------------
 // AvatarBadge — small indicator at bottom-right (online status, etc.). Sized
-// by parent Avatar's data-size. Optional SVG child renders inside.
+// by parent Avatar's data-size. ring-2 of bg separates it from the avatar.
 // -----------------------------------------------------------------------------
 
 function AvatarBadge({ className, ...props }: React.ComponentProps<"span">) {

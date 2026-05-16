@@ -30,11 +30,8 @@ const sections = [
   {
     label: "Layout",
     items: [
-      { href: "/components/card", label: "Card" },
       { href: "/components/separator", label: "Separator" },
       { href: "/components/avatar", label: "Avatar" },
-      { href: "/components/skeleton", label: "Skeleton" },
-      { href: "/components/aspect-ratio", label: "Aspect Ratio" },
     ],
   },
   {
