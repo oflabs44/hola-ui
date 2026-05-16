@@ -66,12 +66,30 @@ Ask: is the divergence in the *visual* layer or the *API* layer?
 
 ## Verification before any new component lands
 
-Before opening a PR for a new component:
+Before opening a PR for a new component, do these in order. **Don't skip
+step 2.** Past mistakes have come from going straight from shadcn-shape to
+implementation without re-reading Catalyst.
 
-1. Fetch the official shadcn source for the same component from
-   `apps/v4/registry/bases/base/ui/<name>.tsx` on `github.com/shadcn-ui/ui`.
-2. Match its structural skeleton (imports, CVA call, function shape, export).
-3. Replace the class strings with Catalyst-style visuals using our tokens.
+1. **Fetch the official shadcn source** for the same component from
+   `apps/v4/registry/bases/base/ui/<name>.tsx` on `github.com/shadcn-ui/ui`
+   (and the corresponding `cn-<name>-*` section in
+   `apps/v4/registry/styles/style-vega.css` if you want to see how shadcn
+   themes it). Use these for the **structural skeleton**: imports, CVA call,
+   function shape, exports, prop types.
+
+2. **Read Catalyst's version**, if it exists, for the **visual treatment**.
+   Located in the user's downloaded kit:
+   `~/Downloads/catalyst-ui-kit.zip` → extracts to
+   `<tmp>/catalyst-ui-kit/typescript/<name>.tsx`. Note specifically:
+   border radius, padding, font sizing (Catalyst often uses responsive
+   `text-sm/5 sm:text-xs/5` patterns), opacity ratios for tinted variants,
+   layering technique for solids, `forced-colors:outline`. **Don't guess
+   Catalyst's choices — read them.**
+
+3. Compose: shadcn skeleton + Catalyst visuals using `--hola-*` tokens.
+   When Catalyst's variant taxonomy doesn't map to shadcn's, prefer
+   shadcn's variant names and apply Catalyst-style treatment to each.
+
 4. Run through the checklist in `registry/hola/PATTERNS.md`.
 
 ## Hosting + git reminders (project-specific)
