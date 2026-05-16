@@ -1,52 +1,107 @@
 @import "tailwindcss";
 
-/* Hola UI design tokens — keep in sync with registry.json `cssVars`. */
-:root {
-  --hola-bg: oklch(0.99 0 0);
-  --hola-fg: oklch(0.18 0 0);
-  --hola-muted: oklch(0.55 0 0);
-  --hola-surface: oklch(0.97 0 0);
-  --hola-border: oklch(0.9 0 0);
-  --hola-brand: oklch(0.72 0.16 50);
-  --hola-brand-fg: oklch(0.18 0 0);
-  --hola-accent: oklch(0.62 0.14 250);
-  --hola-radius: 0.625rem;
+/* -----------------------------------------------------------------------------
+   Hola UI design tokens.
 
+   Philosophy:
+   - Concrete color tokens only for *roles* (bg, fg, surface, brand, accent).
+   - Borders, hover overlays, dividers use Tailwind v4 alpha modifiers on top of
+     these roles, e.g. `border-(--hola-fg)/10`. The "translucent overlay" pattern
+     replaces a separate `--hola-border` token — it tints whatever's behind it.
+   - Light + dark are NOT colour inversions; they are different physical
+     metaphors. Light = raised surfaces with shadows. Dark = etched surfaces
+     with subtle white overlays.
+   - Neutrals carry a hair of chroma (~0.005) shifted toward the brand hue —
+     they feel less clinical than pure greyscale.
+
+   Keep this file in sync with registry.json `cssVars` until the build script
+   derives one from the other.
+   -------------------------------------------------------------------------- */
+
+@theme {
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, "SF Mono", Menlo, monospace;
+
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.625rem;
+  --radius-xl: 0.875rem;
+}
+
+:root {
+  /* Surfaces */
+  --hola-bg: oklch(1 0 0);
+  --hola-surface: oklch(0.985 0.002 264);
+  --hola-surface-elevated: oklch(1 0 0);
+
+  /* Text */
+  --hola-fg: oklch(0.18 0.005 264);
+  --hola-muted: oklch(0.55 0.01 264);
+
+  /* Brand (default: near-black, Linear/Vercel-coded) */
+  --hola-brand: oklch(0.22 0.008 264);
+  --hola-brand-fg: oklch(0.98 0.002 264);
+
+  /* Accent (focus rings, links, info) */
+  --hola-accent: oklch(0.55 0.18 252);
+  --hola-accent-fg: oklch(0.98 0 0);
+
+  /* Status */
+  --hola-danger: oklch(0.55 0.2 25);
+  --hola-danger-fg: oklch(0.98 0 0);
+
+  /* Stacking context so Base UI portals layer correctly */
   isolation: isolate;
+
+  color-scheme: light;
 }
 
 .dark {
-  --hola-bg: oklch(0.14 0 0);
-  --hola-fg: oklch(0.96 0 0);
-  --hola-muted: oklch(0.65 0 0);
-  --hola-surface: oklch(0.2 0 0);
-  --hola-border: oklch(0.3 0 0);
-  --hola-brand: oklch(0.74 0.16 50);
-  --hola-brand-fg: oklch(0.14 0 0);
-  --hola-accent: oklch(0.7 0.14 250);
-}
+  --hola-bg: oklch(0.16 0.006 264);
+  --hola-surface: oklch(0.205 0.008 264);
+  --hola-surface-elevated: oklch(0.225 0.008 264);
 
-@theme inline {
-  --color-bg: var(--hola-bg);
-  --color-fg: var(--hola-fg);
-  --color-muted: var(--hola-muted);
-  --color-surface: var(--hola-surface);
-  --color-border: var(--hola-border);
-  --color-brand: var(--hola-brand);
-  --color-brand-fg: var(--hola-brand-fg);
-  --color-accent: var(--hola-accent);
-  --radius: var(--hola-radius);
+  --hola-fg: oklch(0.98 0.002 264);
+  --hola-muted: oklch(0.62 0.01 264);
+
+  --hola-brand: oklch(0.98 0.002 264);
+  --hola-brand-fg: oklch(0.18 0.005 264);
+
+  --hola-accent: oklch(0.7 0.16 252);
+  --hola-accent-fg: oklch(0.18 0.005 264);
+
+  --hola-danger: oklch(0.65 0.2 25);
+  --hola-danger-fg: oklch(0.98 0 0);
+
+  color-scheme: dark;
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not(.light) {
-    --hola-bg: oklch(0.14 0 0);
-    --hola-fg: oklch(0.96 0 0);
-    --hola-muted: oklch(0.65 0 0);
-    --hola-surface: oklch(0.2 0 0);
-    --hola-border: oklch(0.3 0 0);
-    --hola-brand: oklch(0.74 0.16 50);
-    --hola-brand-fg: oklch(0.14 0 0);
-    --hola-accent: oklch(0.7 0.14 250);
+    --hola-bg: oklch(0.16 0.006 264);
+    --hola-surface: oklch(0.205 0.008 264);
+    --hola-surface-elevated: oklch(0.225 0.008 264);
+    --hola-fg: oklch(0.98 0.002 264);
+    --hola-muted: oklch(0.62 0.01 264);
+    --hola-brand: oklch(0.98 0.002 264);
+    --hola-brand-fg: oklch(0.18 0.005 264);
+    --hola-accent: oklch(0.7 0.16 252);
+    --hola-accent-fg: oklch(0.18 0.005 264);
+    --hola-danger: oklch(0.65 0.2 25);
+    color-scheme: dark;
   }
+}
+
+@theme inline {
+  --color-bg: var(--hola-bg);
+  --color-surface: var(--hola-surface);
+  --color-surface-elevated: var(--hola-surface-elevated);
+  --color-fg: var(--hola-fg);
+  --color-muted: var(--hola-muted);
+  --color-brand: var(--hola-brand);
+  --color-brand-fg: var(--hola-brand-fg);
+  --color-accent: var(--hola-accent);
+  --color-accent-fg: var(--hola-accent-fg);
+  --color-danger: var(--hola-danger);
+  --color-danger-fg: var(--hola-danger-fg);
 }
