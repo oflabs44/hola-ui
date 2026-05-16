@@ -5,6 +5,8 @@ const components = [
   { href: "/components/badge", name: "Badge", description: "Status pills and labels. 6 structural variants × 18 Catalyst colours." },
   { href: "/components/input", name: "Input", description: "Text input. Asymmetric light/dark surfaces, focus + invalid states." },
   { href: "/components/input-group", name: "Input Group", description: "Wrapper for inputs with icons, addons, buttons. Inline + block alignment." },
+  { href: "/components/label", name: "Label", description: "Accessible form label with disabled-state propagation." },
+  { href: "/components/field", name: "Field", description: "Compose Label + Input + Description + Error. Vertical / horizontal / responsive orientation." },
 ];
 
 export default function ComponentsIndex() {

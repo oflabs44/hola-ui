@@ -131,6 +131,37 @@
           "target": "components/ui/input-group.tsx"
         }
       ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "label",
+      "type": "registry:ui",
+      "title": "Label",
+      "description": "Accessible form label. Pairs with Input or used inside Field. data-slot=label.",
+      "registryDependencies": ["theme", "utils"],
+      "files": [
+        {
+          "path": "registry/hola/ui/label.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/label.tsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "field",
+      "type": "registry:ui",
+      "title": "Field",
+      "description": "Composition wrapper for form fields. Field, FieldSet, FieldGroup, FieldLabel, FieldDescription, FieldError + responsive orientation. data-invalid propagates danger colour.",
+      "dependencies": ["class-variance-authority"],
+      "registryDependencies": ["theme", "utils", "label"],
+      "files": [
+        {
+          "path": "registry/hola/ui/field.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/field.tsx"
+        }
+      ]
     }
   ]
 }
