@@ -2,7 +2,8 @@ import Link from "next/link";
 
 const components = [
   { href: "/components/button", name: "Button", description: "Trigger actions or events. 6 variants, 6 sizes, polymorphic via render prop." },
-  { href: "/components/badge", name: "Badge", description: "Small status indicators and labels. 6 variants." },
+  { href: "/components/badge", name: "Badge", description: "Status pills and labels. 6 structural variants × 18 Catalyst colours." },
+  { href: "/components/input", name: "Input", description: "Text input. Asymmetric light/dark surfaces, focus + invalid states." },
 ];
 
 export default function ComponentsIndex() {

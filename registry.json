@@ -99,6 +99,22 @@
           "target": "components/ui/badge.tsx"
         }
       ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "input",
+      "type": "registry:ui",
+      "title": "Input",
+      "description": "Text input on @base-ui/react/input. Asymmetric light/dark surfaces (raised vs etched), translucent overlay borders, responsive typography.",
+      "dependencies": ["@base-ui/react"],
+      "registryDependencies": ["theme", "utils"],
+      "files": [
+        {
+          "path": "registry/hola/ui/input.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/input.tsx"
+        }
+      ]
     }
   ]
 }

@@ -14,6 +14,7 @@ const sections = [
     items: [
       { href: "/components/button", label: "Button" },
       { href: "/components/badge", label: "Badge" },
+      { href: "/components/input", label: "Input" },
     ],
   },
 ];
