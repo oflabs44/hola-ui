@@ -10,10 +10,9 @@ const sections = [
     items: [{ href: "/components", label: "Overview" }],
   },
   {
-    label: "Components",
+    label: "Forms",
     items: [
       { href: "/components/button", label: "Button" },
-      { href: "/components/badge", label: "Badge" },
       { href: "/components/input", label: "Input" },
       { href: "/components/input-group", label: "Input Group" },
       { href: "/components/label", label: "Label" },
@@ -27,6 +26,20 @@ const sections = [
       { href: "/components/toggle", label: "Toggle" },
       { href: "/components/toggle-group", label: "Toggle Group" },
     ],
+  },
+  {
+    label: "Layout",
+    items: [
+      { href: "/components/card", label: "Card" },
+      { href: "/components/separator", label: "Separator" },
+      { href: "/components/avatar", label: "Avatar" },
+      { href: "/components/skeleton", label: "Skeleton" },
+      { href: "/components/aspect-ratio", label: "Aspect Ratio" },
+    ],
+  },
+  {
+    label: "Data",
+    items: [{ href: "/components/badge", label: "Badge" }],
   },
 ];
 

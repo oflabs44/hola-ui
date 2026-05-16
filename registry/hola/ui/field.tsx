@@ -6,6 +6,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "@/registry/hola/lib/utils";
 import { Label } from "@/registry/hola/ui/label";
+import { Separator } from "@/registry/hola/ui/separator";
 
 // -----------------------------------------------------------------------------
 // FieldSet — semantic <fieldset> for grouping related controls. Pair with
@@ -264,6 +265,36 @@ function FieldError({
   );
 }
 
+// -----------------------------------------------------------------------------
+// FieldSeparator — soft divider between Field rows in long forms. Optional
+// label content centers over the line ("OR", "Continue with", etc.).
+// -----------------------------------------------------------------------------
+
+function FieldSeparator({
+  children,
+  className,
+  ...props
+}: React.ComponentProps<"div"> & { children?: React.ReactNode }) {
+  return (
+    <div
+      data-slot="field-separator"
+      data-content={Boolean(children)}
+      className={cn("relative -my-2 h-5 text-sm", className)}
+      {...props}
+    >
+      <Separator soft className="absolute inset-x-0 top-1/2" />
+      {children ? (
+        <span
+          data-slot="field-separator-content"
+          className="relative mx-auto block w-fit bg-bg px-2 text-muted"
+        >
+          {children}
+        </span>
+      ) : null}
+    </div>
+  );
+}
+
 export {
   Field,
   FieldLabel,
@@ -271,6 +302,7 @@ export {
   FieldError,
   FieldGroup,
   FieldLegend,
+  FieldSeparator,
   FieldSet,
   FieldContent,
   FieldTitle,

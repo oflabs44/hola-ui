@@ -15,6 +15,11 @@ const components = [
   { href: "/components/slider", name: "Slider", description: "Range input. Single thumb or multi-thumb range, horizontal or vertical." },
   { href: "/components/toggle", name: "Toggle", description: "Single on/off button (data-pressed). Default + outline variants, 3 sizes." },
   { href: "/components/toggle-group", name: "Toggle Group", description: "Single or multiple selection. spacing=0 → segmented control." },
+  { href: "/components/card", name: "Card", description: "Bordered container. Header / Title / Description / Action / Content / Footer." },
+  { href: "/components/separator", name: "Separator", description: "Horizontal or vertical divider with soft variant." },
+  { href: "/components/avatar", name: "Avatar", description: "Image avatar with fallback. Plus Badge, Group, GroupCount." },
+  { href: "/components/skeleton", name: "Skeleton", description: "Animated loading placeholder." },
+  { href: "/components/aspect-ratio", name: "Aspect Ratio", description: "Fixed-ratio container." },
 ];
 
 export default function ComponentsIndex() {
