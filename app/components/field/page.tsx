@@ -72,6 +72,31 @@ export default function FieldShowcase() {
       </Showcase>
 
       <Showcase
+        title="Required indicator"
+        description="No prop needed — set required (or aria-required) on the control and the FieldLabel automatically gets a danger-coloured asterisk."
+      >
+        <FieldGroup className="max-w-sm gap-4">
+          <Field>
+            <FieldLabel htmlFor="req-name">Full name</FieldLabel>
+            <Input id="req-name" required placeholder="Ola Fagbemi" />
+          </Field>
+          <Field>
+            <FieldLabel htmlFor="req-email">Email</FieldLabel>
+            <Input id="req-email" type="email" required placeholder="hola@example.com" />
+            <FieldDescription>We&apos;ll send a verification link.</FieldDescription>
+          </Field>
+          <Field>
+            <FieldLabel htmlFor="opt-company">Company</FieldLabel>
+            <Input id="opt-company" placeholder="optional" />
+          </Field>
+          <Field>
+            <FieldLabel htmlFor="aria-req">Verification code</FieldLabel>
+            <Input id="aria-req" aria-required placeholder="aria-required also works" />
+          </Field>
+        </FieldGroup>
+      </Showcase>
+
+      <Showcase
         title="With InputGroup"
         description="Field composes with anything — InputGroup slots in for icon/addon inputs."
       >

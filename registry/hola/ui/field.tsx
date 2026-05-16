@@ -72,7 +72,17 @@ function FieldGroup({ className, ...props }: React.ComponentProps<"div">) {
 // data-[invalid=true] propagates --hola-danger colour to label + description.
 // -----------------------------------------------------------------------------
 
-const fieldVariants = cva("group/field flex w-full gap-3", {
+const fieldVariants = cva(
+  cn(
+    "group/field flex w-full gap-3",
+    // Required indicator — when any descendant control is :required (or
+    // aria-required), append a danger-coloured asterisk to FieldLabel /
+    // FieldTitle. CSS-only, no consumer markup needed beyond the standard
+    // `required` attribute on the input.
+    "has-[:required]:[&_[data-slot=field-label]]:after:-ml-1.5 has-[:required]:[&_[data-slot=field-label]]:after:content-['*'] has-[:required]:[&_[data-slot=field-label]]:after:text-(--hola-danger) has-[:required]:[&_[data-slot=field-label]]:after:font-medium",
+    "has-[[aria-required=true]]:[&_[data-slot=field-label]]:after:-ml-1.5 has-[[aria-required=true]]:[&_[data-slot=field-label]]:after:content-['*'] has-[[aria-required=true]]:[&_[data-slot=field-label]]:after:text-(--hola-danger) has-[[aria-required=true]]:[&_[data-slot=field-label]]:after:font-medium"
+  ),
+  {
   variants: {
     orientation: {
       vertical: "flex-col *:w-full [&>.sr-only]:w-auto",
