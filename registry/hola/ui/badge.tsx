@@ -62,26 +62,30 @@ const textColor: Record<BadgeColor, string> = {
   rose: "text-rose-700 dark:text-rose-400",
 };
 
-// Solid filled — used by the `default` variant.
+// Solid filled — used by the `default` variant. Per-color shades calibrated
+// to Catalyst's button colour map verbatim. Light colours (amber/yellow/lime/
+// cyan) sit at 300-400 with dark text; mid colours (orange/sky/indigo/violet/
+// purple/fuchsia/pink/rose) at 500; saturated (red/green/emerald/teal/blue) at
+// 600; zinc at 600 to match Catalyst's `zinc` colour entry.
 const solidStyle: Record<BadgeColor, string> = {
-  zinc: "bg-zinc-900 text-white dark:bg-zinc-50 dark:text-zinc-900",
+  zinc: "bg-zinc-600 text-white",
   red: "bg-red-600 text-white",
-  orange: "bg-orange-600 text-white",
-  amber: "bg-amber-500 text-amber-950",
-  yellow: "bg-yellow-400 text-yellow-950",
-  lime: "bg-lime-500 text-lime-950",
+  orange: "bg-orange-500 text-white",
+  amber: "bg-amber-400 text-amber-950",
+  yellow: "bg-yellow-300 text-yellow-950",
+  lime: "bg-lime-300 text-lime-950",
   green: "bg-green-600 text-white",
   emerald: "bg-emerald-600 text-white",
   teal: "bg-teal-600 text-white",
-  cyan: "bg-cyan-500 text-cyan-950",
-  sky: "bg-sky-600 text-white",
+  cyan: "bg-cyan-300 text-cyan-950",
+  sky: "bg-sky-500 text-white",
   blue: "bg-blue-600 text-white",
-  indigo: "bg-indigo-600 text-white",
-  violet: "bg-violet-600 text-white",
-  purple: "bg-purple-600 text-white",
-  fuchsia: "bg-fuchsia-600 text-white",
-  pink: "bg-pink-600 text-white",
-  rose: "bg-rose-600 text-white",
+  indigo: "bg-indigo-500 text-white",
+  violet: "bg-violet-500 text-white",
+  purple: "bg-purple-500 text-white",
+  fuchsia: "bg-fuchsia-500 text-white",
+  pink: "bg-pink-500 text-white",
+  rose: "bg-rose-500 text-white",
 };
 
 // Border colors for outline variant.
