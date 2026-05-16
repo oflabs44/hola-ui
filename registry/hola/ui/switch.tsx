@@ -14,25 +14,26 @@ function Switch({
       data-slot="switch"
       data-size={size}
       className={cn(
-        "peer group/switch relative inline-flex shrink-0 items-center bg-clip-padding",
-        "rounded-full border bg-bg",
-        // Sizing per data-size.
-        "data-[size=default]:h-[20px] data-[size=default]:w-[34px]",
-        "data-[size=sm]:h-[16px] data-[size=sm]:w-[28px]",
-        // Off state — neutral surface, asymmetric light/dark.
-        "border-(--hola-fg)/15 bg-(--hola-fg)/[0.06] shadow-xs",
-        "dark:border-(--hola-fg)/20 dark:bg-(--hola-fg)/[0.08] dark:shadow-none",
-        "hover:bg-(--hola-fg)/[0.1] dark:hover:bg-(--hola-fg)/[0.12]",
-        // On state — fill with accent.
-        "data-[checked]:border-(--hola-accent) data-[checked]:bg-(--hola-accent)",
-        "data-[checked]:hover:bg-(--hola-accent)/90",
-        // Focus + transitions.
-        "outline-none transition-[background-color,border-color,box-shadow] duration-150",
-        "focus-visible:ring-2 focus-visible:ring-(--hola-accent) focus-visible:ring-offset-2 focus-visible:ring-offset-bg",
-        // Hit area for touch.
-        "after:absolute after:-inset-x-1 after:-inset-y-2",
+        "peer group/switch relative inline-flex shrink-0 cursor-default rounded-full",
+        "transition-colors duration-200",
+        // Sizing — Catalyst's default is responsive (mobile bigger).
+        "data-[size=default]:h-6 data-[size=default]:w-10 data-[size=default]:p-[3px]",
+        "data-[size=default]:sm:h-5 data-[size=default]:sm:w-8",
+        "data-[size=sm]:h-4 data-[size=sm]:w-7 data-[size=sm]:p-[2px]",
+        // Off state — Catalyst-style ring-inset instead of border for cleaner edge.
+        "bg-(--hola-fg)/[0.08] ring-1 ring-inset ring-(--hola-fg)/10",
+        "dark:bg-(--hola-fg)/[0.08] dark:ring-(--hola-fg)/15",
+        "hover:bg-(--hola-fg)/[0.12] hover:ring-(--hola-fg)/20",
+        "dark:hover:bg-(--hola-fg)/[0.12] dark:hover:ring-(--hola-fg)/25",
+        // On state — accent fill, ring matches.
+        "data-[checked]:bg-(--hola-accent) data-[checked]:ring-(--hola-accent)",
+        "data-[checked]:hover:bg-(--hola-accent)/95",
+        // Focus.
+        "outline-none focus-visible:ring-2 focus-visible:ring-(--hola-accent) focus-visible:ring-offset-2 focus-visible:ring-offset-bg",
         // Disabled.
         "data-disabled:cursor-not-allowed data-disabled:opacity-50",
+        // Forced colors.
+        "forced-colors:outline",
         className
       )}
       {...props}
@@ -40,16 +41,17 @@ function Switch({
       <SwitchPrimitive.Thumb
         data-slot="switch-thumb"
         className={cn(
-          "pointer-events-none block rounded-full bg-bg shadow-sm ring-0",
-          "transition-transform duration-150",
-          // Sizing per parent's data-size.
-          "group-data-[size=default]/switch:size-[14px] group-data-[size=default]/switch:translate-x-[2px]",
-          "group-data-[size=sm]/switch:size-[12px] group-data-[size=sm]/switch:translate-x-[1px]",
-          // On state translation.
-          "group-data-[size=default]/switch:group-data-[checked]/switch:translate-x-[17px]",
-          "group-data-[size=sm]/switch:group-data-[checked]/switch:translate-x-[13px]",
-          // Thumb colour on checked — white on accent reads cleaner than tinted.
-          "group-data-[checked]/switch:bg-white"
+          "pointer-events-none block rounded-full bg-white shadow-sm ring-1 ring-black/5",
+          "transition-transform duration-200 ease-in-out",
+          // Default sizing — responsive thumb.
+          "group-data-[size=default]/switch:size-4.5",
+          "group-data-[size=default]/switch:sm:size-3.5",
+          // Default translate distances.
+          "group-data-[size=default]/switch:group-data-[checked]/switch:translate-x-4",
+          "group-data-[size=default]/switch:sm:group-data-[checked]/switch:translate-x-3",
+          // Small sizing.
+          "group-data-[size=sm]/switch:size-3",
+          "group-data-[size=sm]/switch:group-data-[checked]/switch:translate-x-3"
         )}
       />
     </SwitchPrimitive.Root>

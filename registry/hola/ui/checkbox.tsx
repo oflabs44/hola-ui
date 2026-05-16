@@ -24,6 +24,7 @@ function Checkbox({ className, ...props }: CheckboxPrimitive.Root.Props) {
         // When checked, swap before bg to the accent (light mode only — dark uses element bg).
         "data-[checked]:before:bg-(--hola-accent) data-[indeterminate]:before:bg-(--hola-accent)",
         // Inner 1px white highlight (Catalyst's premium signature).
+        // Only one ::after per element — labels handle touch hit-area instead.
         "after:absolute after:inset-0 after:rounded-[4px] after:shadow-[inset_0_1px_oklch(1_0_0_/_0.15)]",
         "dark:after:-inset-px dark:after:hidden dark:data-[checked]:after:block dark:data-[indeterminate]:after:block",
         // Focus.
@@ -31,8 +32,6 @@ function Checkbox({ className, ...props }: CheckboxPrimitive.Root.Props) {
         "focus-visible:ring-2 focus-visible:ring-(--hola-accent) focus-visible:ring-offset-2 focus-visible:ring-offset-bg",
         // Invalid.
         "aria-invalid:border-(--hola-danger)",
-        // Hit-area expansion for touch.
-        "after:absolute after:-inset-x-3 after:-inset-y-2",
         // Disabled.
         "disabled:cursor-not-allowed disabled:opacity-50",
         // Forced colors (Windows high-contrast).
