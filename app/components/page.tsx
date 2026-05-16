@@ -12,6 +12,9 @@ const components = [
   { href: "/components/switch", name: "Switch", description: "Toggle switch. Sizes: sm, default." },
   { href: "/components/radio-group", name: "Radio Group", description: "Single-selection group with accent border + inner dot." },
   { href: "/components/select", name: "Select", description: "Dropdown select with portal-rendered content, groups, separators." },
+  { href: "/components/slider", name: "Slider", description: "Range input. Single thumb or multi-thumb range, horizontal or vertical." },
+  { href: "/components/toggle", name: "Toggle", description: "Single on/off button (data-pressed). Default + outline variants, 3 sizes." },
+  { href: "/components/toggle-group", name: "Toggle Group", description: "Single or multiple selection. spacing=0 → segmented control." },
 ];
 
 export default function ComponentsIndex() {

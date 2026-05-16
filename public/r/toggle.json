@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "toggle",
+  "title": "Toggle",
+  "description": "Single on/off button on @base-ui/react/toggle. data-pressed for active state. Variants: default, outline. Sizes: sm, default, lg.",
+  "dependencies": [
+    "@base-ui/react",
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "theme",
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/hola/ui/toggle.tsx",
+      "content": "\"use client\";\n\nimport { Toggle as TogglePrimitive } from \"@base-ui/react/toggle\";\nimport { cva, type VariantProps } from \"class-variance-authority\";\n\nimport { cn } from \"@/registry/hola/lib/utils\";\n\nconst toggleVariants = cva(\n  cn(\n    \"group/toggle inline-flex shrink-0 items-center justify-center gap-1.5 whitespace-nowrap\",\n    \"rounded-[6px] border bg-clip-padding font-medium\",\n    \"outline-none transition-[background-color,border-color,color,box-shadow] duration-100\",\n    \"focus-visible:ring-2 focus-visible:ring-(--hola-accent)\",\n    \"disabled:pointer-events-none disabled:opacity-50\",\n    \"active:not-aria-[haspopup]:translate-y-px\",\n    \"[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4\",\n    \"forced-colors:[--toggle-icon:ButtonText]\"\n  ),\n  {\n    variants: {\n      variant: {\n        // Default — transparent off, tinted on. Same vibe as Button ghost but with pressed state.\n        default: cn(\n          \"border-transparent bg-transparent text-fg\",\n          \"hover:bg-(--hola-fg)/[0.06]\",\n          \"data-[pressed]:bg-(--hola-fg)/[0.1]\",\n          \"dark:hover:bg-(--hola-fg)/[0.08]\",\n          \"dark:data-[pressed]:bg-(--hola-fg)/[0.14]\"\n        ),\n        // Outline — bordered, transparent off, tinted on.\n        outline: cn(\n          \"border-(--hola-fg)/10 bg-transparent text-fg shadow-xs\",\n          \"hover:bg-(--hola-fg)/[0.04]\",\n          \"data-[pressed]:bg-(--hola-fg)/[0.08]\",\n          \"dark:border-(--hola-fg)/15 dark:hover:bg-(--hola-fg)/[0.06] dark:shadow-none\",\n          \"dark:data-[pressed]:bg-(--hola-fg)/[0.12]\"\n        ),\n      },\n      size: {\n        default: \"h-9 min-w-9 px-2.5 text-sm\",\n        sm: \"h-8 min-w-8 px-2 text-xs\",\n        lg: \"h-10 min-w-10 px-3 text-sm\",\n      },\n    },\n    defaultVariants: {\n      variant: \"default\",\n      size: \"default\",\n    },\n  }\n);\n\nfunction Toggle({\n  className,\n  variant = \"default\",\n  size = \"default\",\n  ...props\n}: TogglePrimitive.Props & VariantProps<typeof toggleVariants>) {\n  return (\n    <TogglePrimitive\n      data-slot=\"toggle\"\n      className={cn(toggleVariants({ variant, size, className }))}\n      {...props}\n    />\n  );\n}\n\nexport { Toggle, toggleVariants };\n",
+      "type": "registry:ui",
+      "target": "components/ui/toggle.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "slider",
+  "title": "Slider",
+  "description": "Range input on @base-ui/react/slider. Horizontal + vertical, single + multi-thumb range. Track / Indicator (filled range) / Thumb.",
+  "dependencies": [
+    "@base-ui/react"
+  ],
+  "registryDependencies": [
+    "theme",
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/hola/ui/slider.tsx",
+      "content": "\"use client\";\n\nimport { Slider as SliderPrimitive } from \"@base-ui/react/slider\";\n\nimport { cn } from \"@/registry/hola/lib/utils\";\n\nfunction Slider({\n  className,\n  defaultValue,\n  value,\n  min = 0,\n  max = 100,\n  ...props\n}: SliderPrimitive.Root.Props) {\n  // Determine how many thumbs to render. Array values = range slider; scalar = single.\n  const thumbValues = Array.isArray(value)\n    ? value\n    : Array.isArray(defaultValue)\n      ? defaultValue\n      : [min, max];\n\n  return (\n    <SliderPrimitive.Root\n      data-slot=\"slider\"\n      defaultValue={defaultValue}\n      value={value}\n      min={min}\n      max={max}\n      thumbAlignment=\"edge\"\n      className={cn(\"data-horizontal:w-full data-vertical:h-full\", className)}\n      {...props}\n    >\n      <SliderPrimitive.Control\n        className={cn(\n          \"relative flex w-full touch-none select-none items-center\",\n          \"data-vertical:h-full data-vertical:w-auto data-vertical:flex-col\",\n          \"data-disabled:opacity-50 data-disabled:cursor-not-allowed\"\n        )}\n      >\n        <SliderPrimitive.Track\n          data-slot=\"slider-track\"\n          className={cn(\n            \"relative grow select-none overflow-hidden rounded-full\",\n            \"bg-(--hola-fg)/[0.08] dark:bg-(--hola-fg)/[0.1]\",\n            \"data-horizontal:h-1.5 data-horizontal:w-full\",\n            \"data-vertical:h-full data-vertical:w-1.5\"\n          )}\n        >\n          <SliderPrimitive.Indicator\n            data-slot=\"slider-range\"\n            className={cn(\n              \"select-none bg-(--hola-accent)\",\n              \"data-horizontal:h-full\",\n              \"data-vertical:w-full\"\n            )}\n          />\n        </SliderPrimitive.Track>\n\n        {thumbValues.map((_, index) => (\n          <SliderPrimitive.Thumb\n            key={index}\n            data-slot=\"slider-thumb\"\n            className={cn(\n              \"block size-4 shrink-0 select-none rounded-full\",\n              \"border-2 border-(--hola-accent) bg-bg shadow-sm\",\n              \"transition-[box-shadow,transform] duration-100\",\n              \"outline-none\",\n              \"hover:ring-4 hover:ring-(--hola-accent)/20\",\n              \"focus-visible:ring-4 focus-visible:ring-(--hola-accent)/30\",\n              \"active:scale-95\",\n              \"disabled:pointer-events-none disabled:opacity-50\"\n            )}\n          />\n        ))}\n      </SliderPrimitive.Control>\n    </SliderPrimitive.Root>\n  );\n}\n\nexport { Slider };\n",
+      "type": "registry:ui",
+      "target": "components/ui/slider.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

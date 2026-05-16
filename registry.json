@@ -241,6 +241,54 @@
           "target": "components/ui/select.tsx"
         }
       ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "slider",
+      "type": "registry:ui",
+      "title": "Slider",
+      "description": "Range input on @base-ui/react/slider. Horizontal + vertical, single + multi-thumb range. Track / Indicator (filled range) / Thumb.",
+      "dependencies": ["@base-ui/react"],
+      "registryDependencies": ["theme", "utils"],
+      "files": [
+        {
+          "path": "registry/hola/ui/slider.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/slider.tsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "toggle",
+      "type": "registry:ui",
+      "title": "Toggle",
+      "description": "Single on/off button on @base-ui/react/toggle. data-pressed for active state. Variants: default, outline. Sizes: sm, default, lg.",
+      "dependencies": ["@base-ui/react", "class-variance-authority"],
+      "registryDependencies": ["theme", "utils"],
+      "files": [
+        {
+          "path": "registry/hola/ui/toggle.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/toggle.tsx"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "toggle-group",
+      "type": "registry:ui",
+      "title": "Toggle Group",
+      "description": "Group of toggles on @base-ui/react/toggle-group. Single or multiple selection; spacing=0 collapses into a segmented control with merged borders.",
+      "dependencies": ["@base-ui/react", "class-variance-authority"],
+      "registryDependencies": ["theme", "utils", "toggle"],
+      "files": [
+        {
+          "path": "registry/hola/ui/toggle-group.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/toggle-group.tsx"
+        }
+      ]
     }
   ]
 }

@@ -23,6 +23,9 @@ const sections = [
       { href: "/components/switch", label: "Switch" },
       { href: "/components/radio-group", label: "Radio Group" },
       { href: "/components/select", label: "Select" },
+      { href: "/components/slider", label: "Slider" },
+      { href: "/components/toggle", label: "Toggle" },
+      { href: "/components/toggle-group", label: "Toggle Group" },
     ],
   },
 ];
