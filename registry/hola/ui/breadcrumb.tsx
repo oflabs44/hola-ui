@@ -47,7 +47,6 @@ function BreadcrumbLink({
     defaultTagName: "a",
     props: mergeProps<"a">(
       {
-        "data-slot": "breadcrumb-link",
         className: cn(
           "transition-colors hover:text-fg outline-none",
           "focus-visible:rounded-[3px] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--hola-accent)",
