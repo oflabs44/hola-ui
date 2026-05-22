@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "popover",
+  "title": "Popover",
+  "description": "Click-anchored interactive panel on @base-ui/react/popover. Same Positioner anchoring as Tooltip but focusable and content-rich. Translucent overlay border, soft shadow, asymmetric light/dark surface. Sides: top/right/bottom (default)/left.",
+  "dependencies": [
+    "@base-ui/react"
+  ],
+  "registryDependencies": [
+    "theme",
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/hola/ui/popover.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { Popover as PopoverPrimitive } from \"@base-ui/react/popover\";\n\nimport { cn } from \"@/registry/hola/lib/utils\";\n\nconst Popover = PopoverPrimitive.Root;\n\nfunction PopoverTrigger(props: PopoverPrimitive.Trigger.Props) {\n  return <PopoverPrimitive.Trigger data-slot=\"popover-trigger\" {...props} />;\n}\n\nfunction PopoverClose(props: PopoverPrimitive.Close.Props) {\n  return <PopoverPrimitive.Close data-slot=\"popover-close\" {...props} />;\n}\n\nfunction PopoverContent({\n  className,\n  align = \"center\",\n  alignOffset = 0,\n  side = \"bottom\",\n  sideOffset = 6,\n  ...props\n}: PopoverPrimitive.Popup.Props &\n  Pick<\n    PopoverPrimitive.Positioner.Props,\n    \"align\" | \"alignOffset\" | \"side\" | \"sideOffset\"\n  >) {\n  return (\n    <PopoverPrimitive.Portal>\n      <PopoverPrimitive.Positioner\n        align={align}\n        alignOffset={alignOffset}\n        side={side}\n        sideOffset={sideOffset}\n        className=\"isolate z-50\"\n      >\n        <PopoverPrimitive.Popup\n          data-slot=\"popover-content\"\n          className={cn(\n            \"z-50 w-72 origin-(--transform-origin) outline-none\",\n            \"rounded-[6px] p-4\",\n            \"bg-(--hola-bg) dark:bg-(--hola-surface-elevated) bg-clip-padding\",\n            \"border border-(--hola-fg)/10 dark:border-(--hola-fg)/15\",\n            \"shadow-lg\",\n            // Open / close transitions via Tailwind v4 native data-starting-style.\n            \"transition-[opacity,transform] duration-100\",\n            \"data-[starting-style]:opacity-0 data-[starting-style]:scale-95\",\n            \"data-[ending-style]:opacity-0 data-[ending-style]:scale-95\",\n            className\n          )}\n          {...props}\n        />\n      </PopoverPrimitive.Positioner>\n    </PopoverPrimitive.Portal>\n  );\n}\n\nfunction PopoverHeader({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"popover-header\"\n      className={cn(\"flex flex-col gap-1.5\", className)}\n      {...props}\n    />\n  );\n}\n\nfunction PopoverTitle({\n  className,\n  ...props\n}: PopoverPrimitive.Title.Props) {\n  return (\n    <PopoverPrimitive.Title\n      data-slot=\"popover-title\"\n      className={cn(\n        \"text-sm font-semibold leading-none tracking-tight text-fg\",\n        className\n      )}\n      {...props}\n    />\n  );\n}\n\nfunction PopoverDescription({\n  className,\n  ...props\n}: PopoverPrimitive.Description.Props) {\n  return (\n    <PopoverPrimitive.Description\n      data-slot=\"popover-description\"\n      className={cn(\"text-sm text-muted\", className)}\n      {...props}\n    />\n  );\n}\n\nexport {\n  Popover,\n  PopoverClose,\n  PopoverContent,\n  PopoverDescription,\n  PopoverHeader,\n  PopoverTitle,\n  PopoverTrigger,\n};\n",
+      "type": "registry:ui",
+      "target": "components/ui/popover.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

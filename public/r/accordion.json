@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "accordion",
+  "title": "Accordion",
+  "description": "Vertically stacked, expandable sections on @base-ui/react/accordion. Translucent divider borders, chevron flips via data-[panel-open], panel height animates via Base UI's --accordion-panel-height CSS var. Supports single-open (default) and multiple-open via `multiple` prop.",
+  "dependencies": [
+    "@base-ui/react"
+  ],
+  "registryDependencies": [
+    "theme",
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/hola/ui/accordion.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { Accordion as AccordionPrimitive } from \"@base-ui/react/accordion\";\n\nimport { cn } from \"@/registry/hola/lib/utils\";\n\nfunction Accordion({ className, ...props }: AccordionPrimitive.Root.Props) {\n  return (\n    <AccordionPrimitive.Root\n      data-slot=\"accordion\"\n      className={cn(\"flex w-full flex-col\", className)}\n      {...props}\n    />\n  );\n}\n\nfunction AccordionItem({ className, ...props }: AccordionPrimitive.Item.Props) {\n  return (\n    <AccordionPrimitive.Item\n      data-slot=\"accordion-item\"\n      className={cn(\n        \"border-b border-(--hola-fg)/10 dark:border-(--hola-fg)/15 last:border-b-0\",\n        className\n      )}\n      {...props}\n    />\n  );\n}\n\nfunction ChevronDownIcon() {\n  return (\n    <svg\n      viewBox=\"0 0 16 16\"\n      fill=\"none\"\n      stroke=\"currentColor\"\n      strokeWidth=\"1.5\"\n      strokeLinecap=\"round\"\n      strokeLinejoin=\"round\"\n      className=\"size-4 text-muted\"\n    >\n      <path d=\"m4 6 4 4 4-4\" />\n    </svg>\n  );\n}\n\nfunction AccordionTrigger({\n  className,\n  children,\n  ...props\n}: AccordionPrimitive.Trigger.Props) {\n  return (\n    <AccordionPrimitive.Header className=\"flex\">\n      <AccordionPrimitive.Trigger\n        data-slot=\"accordion-trigger\"\n        className={cn(\n          \"group/accordion-trigger flex flex-1 items-center justify-between gap-4 py-3 text-left text-sm font-medium text-fg outline-none\",\n          \"transition-colors duration-100 hover:text-fg/80\",\n          \"focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--hola-accent)\",\n          \"aria-disabled:pointer-events-none aria-disabled:opacity-50\",\n          \"[&_svg]:transition-transform [&_svg]:duration-150 data-[panel-open]:[&_svg]:rotate-180\",\n          className\n        )}\n        {...props}\n      >\n        {children}\n        <ChevronDownIcon />\n      </AccordionPrimitive.Trigger>\n    </AccordionPrimitive.Header>\n  );\n}\n\nfunction AccordionContent({\n  className,\n  children,\n  ...props\n}: AccordionPrimitive.Panel.Props) {\n  return (\n    <AccordionPrimitive.Panel\n      data-slot=\"accordion-content\"\n      className={cn(\n        \"overflow-hidden text-sm text-muted\",\n        \"h-(--accordion-panel-height) transition-[height] duration-200 ease-out\",\n        \"data-[starting-style]:h-0 data-[ending-style]:h-0\"\n      )}\n      {...props}\n    >\n      <div className={cn(\"pb-3\", className)}>{children}</div>\n    </AccordionPrimitive.Panel>\n  );\n}\n\nexport { Accordion, AccordionContent, AccordionItem, AccordionTrigger };\n",
+      "type": "registry:ui",
+      "target": "components/ui/accordion.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

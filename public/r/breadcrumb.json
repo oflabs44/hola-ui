@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "breadcrumb",
+  "title": "Breadcrumb",
+  "description": "Hierarchical navigation trail. Composed of Breadcrumb → List → Item → Link/Page with optional Separator and Ellipsis. BreadcrumbLink supports a render prop via Base UI's useRender for routing libraries.",
+  "dependencies": [
+    "@base-ui/react"
+  ],
+  "registryDependencies": [
+    "theme",
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/hola/ui/breadcrumb.tsx",
+      "content": "import * as React from \"react\";\nimport { mergeProps } from \"@base-ui/react/merge-props\";\nimport { useRender } from \"@base-ui/react/use-render\";\n\nimport { cn } from \"@/registry/hola/lib/utils\";\n\nfunction Breadcrumb({ className, ...props }: React.ComponentProps<\"nav\">) {\n  return (\n    <nav\n      aria-label=\"breadcrumb\"\n      data-slot=\"breadcrumb\"\n      className={className}\n      {...props}\n    />\n  );\n}\n\nfunction BreadcrumbList({ className, ...props }: React.ComponentProps<\"ol\">) {\n  return (\n    <ol\n      data-slot=\"breadcrumb-list\"\n      className={cn(\n        \"flex flex-wrap items-center gap-1.5 text-sm text-muted sm:gap-2.5\",\n        className\n      )}\n      {...props}\n    />\n  );\n}\n\nfunction BreadcrumbItem({ className, ...props }: React.ComponentProps<\"li\">) {\n  return (\n    <li\n      data-slot=\"breadcrumb-item\"\n      className={cn(\"inline-flex items-center gap-1.5\", className)}\n      {...props}\n    />\n  );\n}\n\nfunction BreadcrumbLink({\n  className,\n  render,\n  ...props\n}: useRender.ComponentProps<\"a\">) {\n  return useRender({\n    defaultTagName: \"a\",\n    props: mergeProps<\"a\">(\n      {\n        \"data-slot\": \"breadcrumb-link\",\n        className: cn(\n          \"transition-colors hover:text-fg outline-none\",\n          \"focus-visible:rounded-[3px] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--hola-accent)\",\n          className\n        ),\n      },\n      props\n    ),\n    render,\n    state: {\n      slot: \"breadcrumb-link\",\n    },\n  });\n}\n\nfunction BreadcrumbPage({ className, ...props }: React.ComponentProps<\"span\">) {\n  return (\n    <span\n      data-slot=\"breadcrumb-page\"\n      role=\"link\"\n      aria-disabled=\"true\"\n      aria-current=\"page\"\n      className={cn(\"font-medium text-fg\", className)}\n      {...props}\n    />\n  );\n}\n\nfunction ChevronRightIcon() {\n  return (\n    <svg\n      viewBox=\"0 0 16 16\"\n      fill=\"none\"\n      stroke=\"currentColor\"\n      strokeWidth=\"1.5\"\n      strokeLinecap=\"round\"\n      strokeLinejoin=\"round\"\n      className=\"size-3.5\"\n    >\n      <path d=\"m6 4 4 4-4 4\" />\n    </svg>\n  );\n}\n\nfunction MoreHorizontalIcon() {\n  return (\n    <svg viewBox=\"0 0 16 16\" fill=\"currentColor\" className=\"size-4\" aria-hidden>\n      <circle cx=\"3\" cy=\"8\" r=\"1\" />\n      <circle cx=\"8\" cy=\"8\" r=\"1\" />\n      <circle cx=\"13\" cy=\"8\" r=\"1\" />\n    </svg>\n  );\n}\n\nfunction BreadcrumbSeparator({\n  children,\n  className,\n  ...props\n}: React.ComponentProps<\"li\">) {\n  return (\n    <li\n      data-slot=\"breadcrumb-separator\"\n      role=\"presentation\"\n      aria-hidden=\"true\"\n      className={cn(\"text-muted [&>svg]:size-3.5\", className)}\n      {...props}\n    >\n      {children ?? <ChevronRightIcon />}\n    </li>\n  );\n}\n\nfunction BreadcrumbEllipsis({\n  className,\n  ...props\n}: React.ComponentProps<\"span\">) {\n  return (\n    <span\n      data-slot=\"breadcrumb-ellipsis\"\n      role=\"presentation\"\n      aria-hidden=\"true\"\n      className={cn(\"flex size-9 items-center justify-center text-muted\", className)}\n      {...props}\n    >\n      <MoreHorizontalIcon />\n      <span className=\"sr-only\">More</span>\n    </span>\n  );\n}\n\nexport {\n  Breadcrumb,\n  BreadcrumbEllipsis,\n  BreadcrumbItem,\n  BreadcrumbLink,\n  BreadcrumbList,\n  BreadcrumbPage,\n  BreadcrumbSeparator,\n};\n",
+      "type": "registry:ui",
+      "target": "components/ui/breadcrumb.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

@@ -38,6 +38,50 @@ const sections = [
     label: "Data",
     items: [{ href: "/components/badge", label: "Badge" }],
   },
+  {
+    label: "Overlays",
+    items: [
+      { href: "/components/dialog", label: "Dialog" },
+      { href: "/components/alert-dialog", label: "Alert Dialog" },
+      { href: "/components/sheet", label: "Sheet" },
+      { href: "/components/tooltip", label: "Tooltip" },
+      { href: "/components/popover", label: "Popover" },
+      { href: "/components/hover-card", label: "Hover Card" },
+      { href: "/components/dropdown-menu", label: "Dropdown Menu" },
+      { href: "/components/context-menu", label: "Context Menu" },
+      { href: "/components/menubar", label: "Menubar" },
+    ],
+  },
+  {
+    label: "Disclosure",
+    items: [
+      { href: "/components/accordion", label: "Accordion" },
+      { href: "/components/collapsible", label: "Collapsible" },
+      { href: "/components/tabs", label: "Tabs" },
+    ],
+  },
+  {
+    label: "Feedback",
+    items: [
+      { href: "/components/alert", label: "Alert" },
+      { href: "/components/progress", label: "Progress" },
+    ],
+  },
+  {
+    label: "Data display",
+    items: [
+      { href: "/components/table", label: "Table" },
+      { href: "/components/scroll-area", label: "Scroll Area" },
+    ],
+  },
+  {
+    label: "Navigation",
+    items: [
+      { href: "/components/breadcrumb", label: "Breadcrumb" },
+      { href: "/components/pagination", label: "Pagination" },
+      { href: "/components/navigation-menu", label: "Navigation Menu" },
+    ],
+  },
 ];
 
 export function Sidebar() {

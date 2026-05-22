@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "alert",
+  "title": "Alert",
+  "description": "Inline static notification. Variants: default (neutral) and destructive (red). Title + description with optional leading icon, grid-anchored to the text column.",
+  "dependencies": [
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "theme",
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/hola/ui/alert.tsx",
+      "content": "import * as React from \"react\";\nimport { cva, type VariantProps } from \"class-variance-authority\";\n\nimport { cn } from \"@/registry/hola/lib/utils\";\n\nconst alertVariants = cva(\n  cn(\n    \"relative w-full rounded-[6px] border bg-clip-padding px-4 py-3 text-sm\",\n    \"grid grid-cols-[auto_1fr] gap-x-3 gap-y-0.5\",\n    \"has-[>svg]:items-start [&>svg]:col-start-1 [&>svg]:row-span-2 [&>svg]:mt-0.5 [&>svg]:size-4\",\n    \"[&_p]:leading-relaxed\"\n  ),\n  {\n    variants: {\n      variant: {\n        default: cn(\n          \"border-(--hola-fg)/10 bg-(--hola-bg) text-fg [&>svg]:text-muted\",\n          \"dark:border-(--hola-fg)/15 dark:bg-(--hola-surface-elevated)\"\n        ),\n        destructive: cn(\n          \"border-(--hola-danger)/25 bg-(--hola-danger)/[0.06] text-(--hola-danger)\",\n          \"dark:border-(--hola-danger)/35 dark:bg-(--hola-danger)/10\"\n        ),\n      },\n    },\n    defaultVariants: {\n      variant: \"default\",\n    },\n  }\n);\n\nfunction Alert({\n  className,\n  variant = \"default\",\n  ...props\n}: React.ComponentProps<\"div\"> & VariantProps<typeof alertVariants>) {\n  return (\n    <div\n      data-slot=\"alert\"\n      role=\"alert\"\n      className={cn(alertVariants({ variant }), className)}\n      {...props}\n    />\n  );\n}\n\nfunction AlertTitle({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"alert-title\"\n      className={cn(\"col-start-2 font-medium tracking-tight\", className)}\n      {...props}\n    />\n  );\n}\n\nfunction AlertDescription({\n  className,\n  ...props\n}: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"alert-description\"\n      className={cn(\n        \"col-start-2 opacity-80 [&_a]:underline [&_a]:underline-offset-4\",\n        className\n      )}\n      {...props}\n    />\n  );\n}\n\nexport { Alert, AlertDescription, AlertTitle, alertVariants };\n",
+      "type": "registry:ui",
+      "target": "components/ui/alert.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "collapsible",
+  "title": "Collapsible",
+  "description": "Behavioural primitive on @base-ui/react/collapsible — Root, Trigger, Panel. Ships unstyled so consumers compose visuals; animate the panel via Base UI's --collapsible-panel-height CSS var.",
+  "dependencies": [
+    "@base-ui/react"
+  ],
+  "registryDependencies": [
+    "theme",
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/hola/ui/collapsible.tsx",
+      "content": "\"use client\";\n\nimport { Collapsible as CollapsiblePrimitive } from \"@base-ui/react/collapsible\";\n\nfunction Collapsible(props: CollapsiblePrimitive.Root.Props) {\n  return <CollapsiblePrimitive.Root data-slot=\"collapsible\" {...props} />;\n}\n\nfunction CollapsibleTrigger(props: CollapsiblePrimitive.Trigger.Props) {\n  return (\n    <CollapsiblePrimitive.Trigger data-slot=\"collapsible-trigger\" {...props} />\n  );\n}\n\nfunction CollapsibleContent(props: CollapsiblePrimitive.Panel.Props) {\n  return (\n    <CollapsiblePrimitive.Panel data-slot=\"collapsible-content\" {...props} />\n  );\n}\n\nexport { Collapsible, CollapsibleContent, CollapsibleTrigger };\n",
+      "type": "registry:ui",
+      "target": "components/ui/collapsible.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

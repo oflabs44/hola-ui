@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "hover-card",
+  "title": "Hover Card",
+  "description": "Hover/focus-anchored rich preview on @base-ui/react/preview-card. Same Positioner anchoring as Popover but opens on pointer hover or keyboard focus — for profile cards, link previews, and other inline expansions.",
+  "dependencies": [
+    "@base-ui/react"
+  ],
+  "registryDependencies": [
+    "theme",
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/hola/ui/hover-card.tsx",
+      "content": "\"use client\";\n\nimport { PreviewCard as PreviewCardPrimitive } from \"@base-ui/react/preview-card\";\n\nimport { cn } from \"@/registry/hola/lib/utils\";\n\nconst HoverCard = PreviewCardPrimitive.Root;\n\nfunction HoverCardTrigger(props: PreviewCardPrimitive.Trigger.Props) {\n  return (\n    <PreviewCardPrimitive.Trigger data-slot=\"hover-card-trigger\" {...props} />\n  );\n}\n\nfunction HoverCardContent({\n  className,\n  align = \"center\",\n  alignOffset = 0,\n  side = \"bottom\",\n  sideOffset = 6,\n  ...props\n}: PreviewCardPrimitive.Popup.Props &\n  Pick<\n    PreviewCardPrimitive.Positioner.Props,\n    \"align\" | \"alignOffset\" | \"side\" | \"sideOffset\"\n  >) {\n  return (\n    <PreviewCardPrimitive.Portal>\n      <PreviewCardPrimitive.Positioner\n        align={align}\n        alignOffset={alignOffset}\n        side={side}\n        sideOffset={sideOffset}\n        className=\"isolate z-50\"\n      >\n        <PreviewCardPrimitive.Popup\n          data-slot=\"hover-card-content\"\n          className={cn(\n            \"z-50 w-64 origin-(--transform-origin) outline-none\",\n            \"rounded-[6px] p-4\",\n            \"bg-(--hola-bg) dark:bg-(--hola-surface-elevated) bg-clip-padding\",\n            \"border border-(--hola-fg)/10 dark:border-(--hola-fg)/15\",\n            \"shadow-lg\",\n            // Open / close transitions via Tailwind v4 native data-starting-style.\n            \"transition-[opacity,transform] duration-100\",\n            \"data-[starting-style]:opacity-0 data-[starting-style]:scale-95\",\n            \"data-[ending-style]:opacity-0 data-[ending-style]:scale-95\",\n            className\n          )}\n          {...props}\n        />\n      </PreviewCardPrimitive.Positioner>\n    </PreviewCardPrimitive.Portal>\n  );\n}\n\nexport { HoverCard, HoverCardContent, HoverCardTrigger };\n",
+      "type": "registry:ui",
+      "target": "components/ui/hover-card.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

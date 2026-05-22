@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "scroll-area",
+  "title": "Scroll Area",
+  "description": "Custom-styled scrollbar overlay on @base-ui/react/scroll-area. Viewport handles overflow; vertical + horizontal scrollbars are thin rounded thumbs that tint with the underlying surface and only appear when content overflows.",
+  "dependencies": [
+    "@base-ui/react"
+  ],
+  "registryDependencies": [
+    "theme",
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/hola/ui/scroll-area.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { ScrollArea as ScrollAreaPrimitive } from \"@base-ui/react/scroll-area\";\n\nimport { cn } from \"@/registry/hola/lib/utils\";\n\ntype FadeMode = \"none\" | \"vertical\" | \"horizontal\" | \"both\";\n\nfunction ScrollArea({\n  className,\n  children,\n  fade = \"vertical\",\n  fadeSize = 24,\n  ...props\n}: ScrollAreaPrimitive.Root.Props & {\n  fade?: FadeMode;\n  fadeSize?: number;\n}) {\n  const fadeStyle = React.useMemo(\n    () => buildFadeStyle(fade, fadeSize),\n    [fade, fadeSize]\n  );\n\n  return (\n    <ScrollAreaPrimitive.Root\n      data-slot=\"scroll-area\"\n      className={cn(\"relative overflow-hidden\", className)}\n      {...props}\n    >\n      <ScrollAreaPrimitive.Viewport\n        data-slot=\"scroll-area-viewport\"\n        data-fade={fade === \"none\" ? undefined : fade}\n        style={fadeStyle}\n        className={cn(\n          \"size-full rounded-[inherit] outline-none\",\n          \"focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--hola-accent)\"\n        )}\n      >\n        {children}\n      </ScrollAreaPrimitive.Viewport>\n      <ScrollBar />\n      <ScrollBar orientation=\"horizontal\" />\n      <ScrollAreaPrimitive.Corner data-slot=\"scroll-area-corner\" />\n    </ScrollAreaPrimitive.Root>\n  );\n}\n\n// Compose mask-image gradients so content fades to transparent at the edges\n// of the scroll axis. `to bottom` for vertical, `to right` for horizontal;\n// `both` composes the two with mask-composite: intersect so corners feather.\nfunction buildFadeStyle(\n  fade: FadeMode,\n  size: number\n): React.CSSProperties | undefined {\n  if (fade === \"none\") return undefined;\n\n  const ramp = (direction: string) =>\n    `linear-gradient(${direction}, transparent, black ${size}px, black calc(100% - ${size}px), transparent)`;\n\n  if (fade === \"vertical\") {\n    const v = ramp(\"to bottom\");\n\n    return { WebkitMaskImage: v, maskImage: v };\n  }\n  if (fade === \"horizontal\") {\n    const h = ramp(\"to right\");\n\n    return { WebkitMaskImage: h, maskImage: h };\n  }\n  // both\n  const v = ramp(\"to bottom\");\n  const h = ramp(\"to right\");\n\n  return {\n    WebkitMaskImage: `${v}, ${h}`,\n    maskImage: `${v}, ${h}`,\n    WebkitMaskComposite: \"source-in\",\n    maskComposite: \"intersect\",\n  };\n}\n\nfunction ScrollBar({\n  className,\n  orientation = \"vertical\",\n  ...props\n}: ScrollAreaPrimitive.Scrollbar.Props) {\n  return (\n    <ScrollAreaPrimitive.Scrollbar\n      data-slot=\"scroll-area-scrollbar\"\n      orientation={orientation}\n      className={cn(\n        \"flex touch-none select-none p-0.5 transition-opacity duration-150\",\n        \"data-[orientation=vertical]:h-full data-[orientation=vertical]:w-2\",\n        \"data-[orientation=horizontal]:h-2 data-[orientation=horizontal]:w-full data-[orientation=horizontal]:flex-col\",\n        className\n      )}\n      {...props}\n    >\n      <ScrollAreaPrimitive.Thumb\n        data-slot=\"scroll-area-thumb\"\n        className={cn(\n          \"flex-1 rounded-full\",\n          \"bg-(--hola-fg)/20 hover:bg-(--hola-fg)/30\",\n          \"dark:bg-(--hola-fg)/25 dark:hover:bg-(--hola-fg)/35\"\n        )}\n      />\n    </ScrollAreaPrimitive.Scrollbar>\n  );\n}\n\nexport { ScrollArea, ScrollBar };\n",
+      "type": "registry:ui",
+      "target": "components/ui/scroll-area.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}
