@@ -1,30 +1,34 @@
 # hola-ui
 
-A personal shadcn-compatible **design-token registry** layered on top of [shadcn's official Base UI components](https://ui.shadcn.com/docs).
+A personal shadcn-compatible **component + token registry** layered on top of [shadcn's official Base UI registry](https://ui.shadcn.com/docs).
 
-It ships tokens only — components come from the official shadcn registry (`--base base`). This repo is both the **registry** (`/r/theme.json`) and a **live showcase** of the tokens.
+It ships:
 
-## Develop
+- A **theme** (`@hola/theme`) — design tokens in the `--hola-*` namespace, asymmetric light/dark, translucent overlay borders, Catalyst-flavoured neutrals.
+- A **cn() helper** (`@hola/utils`) — `twMerge(clsx())` utility used by every component.
+- **35 components** — every shadcn primitive most apps need, built on Base UI and matching shadcn's official API (variant names, prop shapes, `data-slot`, polymorphism via Base UI's `render` prop).
 
-```sh
-make install
-make dev          # http://localhost:3000
-```
+Visuals are lifted from Tailwind UI Catalyst; APIs are shadcn-standard so this registry composes cleanly alongside other shadcn-base components in the same project.
 
-## Build
+See the live showcase at **https://oflabs44.github.io/hola-ui/**.
 
-```sh
-make build        # builds registry JSON + static site into ./out
-make preview      # serve the static export
-```
+---
 
-## Use it in a project
+## Install in your project
+
+### Prerequisites
+
+- A React 19 project (Next.js 15+, Vite + React 19, etc.).
+- Tailwind v4 — the registry uses Tailwind v4 features (arbitrary CSS-var values, native `data-starting-style`).
+- The shadcn CLI.
+
+### 1. Initialize shadcn with the Base UI style
 
 ```sh
 pnpm dlx shadcn@latest init --base base --style vega
 ```
 
-Then add to `components.json`:
+### 2. Add the hola registry to `components.json`
 
 ```json
 {
@@ -34,27 +38,79 @@ Then add to `components.json`:
 }
 ```
 
-Apply the theme:
+### 3. Apply the theme + utils
 
 ```sh
 pnpm dlx shadcn@latest add @hola/theme
+pnpm dlx shadcn@latest add @hola/utils
 ```
 
-Now `shadcn add button dialog ...` produces Base UI components themed with hola's tokens.
+This wires `--hola-*` CSS variables into your `globals.css` and installs `lib/utils.ts`. Every other component depends on both — `shadcn add` will pull them automatically if missing.
 
-## Layout
+### 4. Add components as needed
 
-- `app/` — showcase site (Next.js, static export)
-- `registry.json` — registry index
-- `registry/hola/` — registry source items (theme + any custom components)
-- `public/r/` — built registry payloads (generated, gitignored)
-- `.github/workflows/deploy.yml` — builds + publishes to GitHub Pages on push to `main`
+```sh
+pnpm dlx shadcn@latest add @hola/button
+pnpm dlx shadcn@latest add @hola/dialog
+pnpm dlx shadcn@latest add @hola/dropdown-menu
+# …
+```
 
-## Tokens
+Components are self-contained: each item lists its npm deps (e.g. `@base-ui/react`, `class-variance-authority`) and registry deps (e.g. `@hola/button` for components that wrap it). The CLI handles both transitively.
 
-Defined twice today (TODO: single source of truth):
+---
 
-1. `app/globals.css` — for the showcase site
-2. `registry.json` `cssVars` — for consumers via `shadcn add @hola/theme`
+## What's included
 
-Keep them in sync until they're deduped.
+Browse the full catalogue at https://oflabs44.github.io/hola-ui/components/ — each page has live demos.
+
+| Cluster | Components |
+| --- | --- |
+| **Foundation** | `theme`, `utils` |
+| **Forms** | `button`, `input`, `input-group`, `label`, `field`, `textarea`, `checkbox`, `switch`, `radio-group`, `select`, `slider`, `toggle`, `toggle-group` |
+| **Layout** | `separator`, `avatar` |
+| **Data** | `badge`, `table`, `scroll-area` |
+| **Overlays** | `dialog`, `alert-dialog`, `sheet`, `tooltip`, `popover`, `hover-card`, `dropdown-menu`, `context-menu`, `menubar` |
+| **Disclosure** | `accordion`, `collapsible`, `tabs` |
+| **Feedback** | `alert`, `progress` |
+| **Navigation** | `breadcrumb`, `pagination`, `navigation-menu` |
+
+---
+
+## Conventions
+
+Every component in the registry follows these rules:
+
+- **Variants via `cva()`**, names match shadcn exactly: `default | secondary | outline | ghost | destructive | link`.
+- **Sizes via `cva()`**, names match shadcn exactly: `default | sm | lg | icon | icon-sm | icon-lg`.
+- **`cn()` from `@/lib/utils`** for class composition.
+- **Base UI primitives** wherever shadcn uses them; polymorphism via the Base UI `render` prop (no `asChild`).
+- **`data-slot="<name>"`** on every component root, so consumers can target children declaratively.
+- **No `forwardRef`, no `displayName`, no `'use client'`** unless the component genuinely uses client-only hooks.
+
+The `--hola-*` token namespace deliberately doesn't collide with shadcn's own tokens — so you can use the official shadcn-base components alongside hola components in the same project without var clashes.
+
+---
+
+## Develop the registry
+
+```sh
+make install
+make dev          # http://localhost:3000
+make registry     # rebuild public/r/*.json from registry/hola/
+make build        # full static build + export to ./out
+```
+
+Layout:
+
+- `app/` — Next.js showcase site (static export).
+- `registry.json` — registry index.
+- `registry/hola/` — source for the theme, the `cn()` utility, and all components.
+- `public/r/` — built registry payloads (regenerated by `make registry`).
+- `.github/workflows/deploy.yml` — builds + publishes to GitHub Pages on push to `main`.
+
+---
+
+## License
+
+Personal project, not yet versioned for public consumption. Use at your own risk.
