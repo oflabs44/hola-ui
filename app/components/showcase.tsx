@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
+import { CopyButton } from "./copy-button";
 
 export function ShowcasePage({
   title,
@@ -35,9 +36,16 @@ function InstallSnippet({ slug }: { slug: string }) {
       <h2 className="mb-3 font-mono text-[10px] font-medium uppercase tracking-wider text-muted">
         Install
       </h2>
-      <pre className="overflow-x-auto rounded-[6px] border border-(--hola-fg)/10 dark:border-(--hola-fg)/15 bg-(--hola-fg)/[0.03] dark:bg-(--hola-fg)/[0.06] px-4 py-3 font-mono text-xs text-fg">
-        {command}
-      </pre>
+      <div className="relative">
+        <pre className="overflow-x-auto rounded-[6px] border border-(--hola-fg)/10 dark:border-(--hola-fg)/15 bg-(--hola-fg)/[0.03] dark:bg-(--hola-fg)/[0.06] px-4 py-3 pr-12 font-mono text-xs text-fg">
+          {command}
+        </pre>
+        <CopyButton
+          text={command}
+          label="Copy install command"
+          className="absolute right-1.5 top-1.5"
+        />
+      </div>
       <p className="mt-2 text-xs text-muted">
         Theme + utils (and any wrapped components) install transitively. Make sure
         the <code className="font-mono">@hola</code> registry is configured in your{" "}

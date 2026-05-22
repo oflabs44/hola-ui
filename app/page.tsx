@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Button } from "@/registry/hola/ui/button";
+import { CopyButton } from "./components/copy-button";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const registryUrl = `https://oflabs44.github.io${basePath}/r/{name}.json`;
@@ -19,11 +20,18 @@ function ArrowIcon() {
   );
 }
 
-function Block({ children }: { children: React.ReactNode }) {
+function Block({ children }: { children: string }) {
   return (
-    <pre className="overflow-x-auto rounded-[6px] border border-(--hola-fg)/10 dark:border-(--hola-fg)/15 bg-(--hola-fg)/[0.03] dark:bg-(--hola-fg)/[0.06] p-4 font-mono text-xs leading-relaxed text-fg">
-      {children}
-    </pre>
+    <div className="relative">
+      <pre className="overflow-x-auto rounded-[6px] border border-(--hola-fg)/10 dark:border-(--hola-fg)/15 bg-(--hola-fg)/[0.03] dark:bg-(--hola-fg)/[0.06] p-4 pr-12 font-mono text-xs leading-relaxed text-fg">
+        {children}
+      </pre>
+      <CopyButton
+        text={children}
+        label="Copy"
+        className="absolute right-2 top-2"
+      />
+    </div>
   );
 }
 
