@@ -58,16 +58,16 @@ export function CopyButton({
 function ClipboardIcon() {
   return (
     <svg
-      viewBox="0 0 16 16"
+      viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
-      strokeWidth="1.5"
+      strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
       aria-hidden
     >
-      <rect x="4" y="3" width="8" height="11" rx="1" />
-      <path d="M6 3v-.5A.5.5 0 0 1 6.5 2h3a.5.5 0 0 1 .5.5V3" />
+      <rect x="8" y="8" width="14" height="14" rx="2" />
+      <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
     </svg>
   );
 }
